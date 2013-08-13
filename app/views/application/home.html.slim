@@ -1,0 +1,91 @@
+.container
+  .row
+    .col-lg-9
+      .panel.nodes-list
+
+        - 10.times do
+          .media.node
+            a.pull-right.thumb
+              img src="http://placehold.it/180x135"
+
+            .media-body
+              h3.media-heading 
+                a href="#" Historia lorem ipsum.
+
+              .content
+                p Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym...
+
+              .row.meta
+                .col-lg-6
+                  .btn-group.actions
+                    a.btn.btn-frame.vote href="#"
+                      span.score 12
+                      i.icon-leaf
+                    a.btn.btn-frame href="#"
+                      i.icon-bookmark
+
+                .col-lg-6.author
+                  .media
+                    a.pull-right
+                      img.img-circle src="http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=30"
+                    .media-body
+                      .pull-right
+                        strong.media-heading 
+                          a href="#" Michał Bajur
+                        br
+                        time 20 minut temu
+
+          hr
+
+        ul.pager
+          li.previous
+            a Następne
+          li.next
+            a Poprzednie
+
+    .col-lg-3#sidebar
+      .list-group.widget-filter
+        a.list-group-item.active
+          i.icon-chevron-left
+          span.title Popularne
+        a.list-group-item
+          i.icon-chevron-left
+          span.title Najnowsze
+        a.list-group-item
+          i.icon-chevron-left
+          span.title Przeczytane
+        a.list-group-item
+          i.icon-chevron-left
+          span.title Zapisane
+
+      .panel.widget-latest-comments
+        .panel-heading
+          h5.panel-title Ostatnie komentarze
+
+        ul.list-group
+          - 3.times do 
+            li.list-group-item
+              a.pull-left
+                img.img-circle src="http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=30"
+              .content
+                p Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficzn...
+              .clearfix
+
+      .panel.widget-meta-discussions
+        .panel-heading
+          h5.panel-title Meta dyskusje
+        ul.list-group
+          - 5.times do
+            li.list-group-item
+              h5
+                a href="#" Historia lorem ipsum.
+              ul.list-inline.users
+                li
+                  a
+                    img.img-circle src="http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20"
+                li.text-muted
+                  i.icon-angle-left
+                - 5.times do
+                  li
+                    a
+                      img.img-rounded src="http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20"

@@ -1,0 +1,25 @@
+.container.nodes-show
+  .row
+    .col-lg-12
+      .panel.node-body
+        .media
+          a.pull-right.thumb
+            = image_tag @node.thumbnail, width: 300
+
+          .media-body
+            h1 = @node.title
+            p.lead = @node.body
+
+            ul.list-inline.tags
+              li
+                a Przepisy
+              li
+                a #vege
+              li
+                a #burger
+              li
+                a #bataty
+              li
+                a #frytki
+
+        .panel-footer

@@ -1,0 +1,38 @@
+.media.node
+  a.pull-right.thumb
+    = image_tag node.thumbnail.thumb, width: 180
+
+  .media-body
+    h3.media-heading 
+      a href=node_path(node) title=node.title = truncate node.title, length: 60
+
+    .content
+      p= truncate node.body, length: 290
+
+    .row.meta
+      .col-lg-6
+        .btn-group.actions.pull-left
+          a.btn.btn-frame.vote href="#"
+            span.score 0
+            i.icon-leaf
+          a.btn.btn-frame href="#"
+            i.icon-bookmark
+        
+        ul.list-inline.commenters
+          li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+          li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+          li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+          li: a.plus
+            | +4
+            i.icon-comments<
+
+      .col-lg-6.author
+        .media
+          a.pull-right
+            img.img-circle src=node.user.avatar_url width="30"
+          .media-body
+            .pull-right
+              strong.media-heading 
+                a href="#" = node.user.display_name
+              br
+              time = node.created_at

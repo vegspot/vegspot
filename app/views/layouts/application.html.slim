@@ -1,0 +1,47 @@
+doctype html
+html
+	head
+		title Vegspot
+		= stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+		= csrf_meta_tags
+
+	body
+
+    #nav-main.navbar.navbar-static-top
+      .container
+        button.navbar-toggle data-target=".nav-collapse" data-toggle="collapse" type="button"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand href="/"
+          .logo
+            i.icon-leaf.no-spin
+          | vegspot
+        .nav-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a href="/lounge"
+                | Poczekalnia
+                sub.text-muted<= "(12)"
+            li
+              a href="/categories" Kategorie
+
+          form.navbar-form.pull-left#search-form
+            input type="text" class="form-control" placeholder="Czego dziś szukasz?"
+
+          .btn-group.pull-right
+            - if user_signed_in?
+              a.btn.btn-grey href=new_node_path
+                span.icon-plus>
+                | dodaj
+              a.btn.btn-grey href="/examples/navbar-static-top/"
+                span.icon-bell-alt
+              a.btn.btn-grey href=""
+                img.img-circle alt="" src=current_user.avatar_url width="15"
+            - else
+              a.btn.btn-grey href="/users/auth/facebook" Zaloguj się
+
+
+    = yield
