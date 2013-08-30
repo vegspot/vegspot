@@ -1,5 +1,6 @@
 class Node < ActiveRecord::Base
   belongs_to :user
+  belongs_to :site
 
   mount_uploader :thumbnail, ThumbnailUploader
 
