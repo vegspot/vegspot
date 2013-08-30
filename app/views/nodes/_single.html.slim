@@ -35,4 +35,4 @@
               strong.media-heading 
                 a href="#" = node.user.display_name
               br
-              time = node.created_at
+              = timeago_tag node.created_at
