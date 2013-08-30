@@ -1,30 +1,30 @@
 .media.node
-  a.pull-right.thumb
-    = image_tag node.thumbnail.thumb, width: 180
+  a.pull-left.thumb
+    = image_tag node.thumbnail.thumb, width: 90
 
   .media-body
-    h3.media-heading 
-      a href=node_path(node) title=node.title = truncate node.title, length: 60
+    h4.media-heading 
+      a href=node_path(node) title=node.title 
+        = node.title
+      .categories
+        a.label.label-default.label-category Przepisy
 
-    .content
-      p= truncate node.body, length: 290
+    .row
+      .col-md-6
+        .meta-1
+          small.text-muted wegannerd.blogspot.com
+          .tags
+            a.label.label-tag href="#" #cieciorka
+            a.label.label-tag href="#" #obiad
 
-    .row.meta
-      .col-lg-6
-        .btn-group.actions.pull-left
-          a.btn.btn-frame.vote href="#"
-            span.score 0
-            i.icon-leaf
-          a.btn.btn-frame href="#"
-            i.icon-bookmark
-        
-        ul.list-inline.commenters
-          li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-          li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-          li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-          li: a.plus
-            | +4
-            i.icon-comments<
+        .meta-2
+          ul.list-inline.commenters
+            li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+            li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+            li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+            li: a.plus
+              | +4
+              i.icon-comments<
 
       .col-lg-6.author
         .media

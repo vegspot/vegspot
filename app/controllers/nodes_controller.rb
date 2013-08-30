@@ -45,7 +45,7 @@ class NodesController < ApplicationController
   # POST /nodes
   # POST /nodes.json
   def create
-    @node = Node.new(params[:node])
+    @node = Node.new(node_params)
     @node.user = current_user
 
     respond_to do |format|
@@ -85,5 +85,10 @@ class NodesController < ApplicationController
       format.html { redirect_to nodes_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def node_params
+    params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url)
   end
 end
