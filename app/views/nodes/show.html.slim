@@ -1,25 +1,16 @@
 .container.nodes-show
   .row
-    .col-lg-12
-      .panel.node-body
-        .media
-          a.pull-right.thumb
-            = image_tag @node.thumbnail, width: 300
+    .col-lg-9
+      .panel.panel-default.nodes-list
+        = render 'single', node: @node
 
+        hr
+
+        .media.comment
+          a.pull-left 0
           .media-body
-            h1 = @node.title
-            p.lead = @node.body
-
-            ul.list-inline.tags
-              li
-                a Przepisy
-              li
-                a #vege
-              li
-                a #burger
-              li
-                a #bataty
-              li
-                a #frytki
-
-        .panel-footer
+            .media
+              a.pull-right
+                = image_tag "https://graph.facebook.com/584562931/picture", size: '40x40', class: 'img-rounded'
+              .media-body
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend leo vitae massa bibendum, eu tincidunt sapien tempor. Fusce volutpat sodales posuere. Quisque ac tempus purus, et volutpat enim. Phasellus pharetra vestibulum posuere. Phasellus turpis nunc, lobortis sit amet diam at, consequat auctor nibh. Curabitur mollis metus sed nibh accumsan varius. Mauris varius, erat fermentum placerat pulvinar, est lectus cursus purus, eu volutpat neque ligula elementum dui. Aenean aliquet rutrum ipsum a rhoncus. Sed scelerisque sodales lacus, eget tristique leo rutrum in. Phasellus aliquet pretium libero, congue tincidunt magna semper vitae.
