@@ -19,12 +19,14 @@
 
         .meta-2
           ul.list-inline.commenters
-            li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-            li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-            li: a = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-            li: a.plus
-              | +4
-              i.icon-comments<
+            - 5.times do
+              li
+                = link_to node do
+                  = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+            li
+              = link_to node, class: 'plus' do
+                | +4
+                i.icon-comments<
 
       .col-lg-6.author
         .media
