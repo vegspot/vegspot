@@ -65,7 +65,7 @@ class NodesController < ApplicationController
     @node = Node.find(params[:id])
 
     respond_to do |format|
-      if @node.update_attributes(params[:node])
+      if @node.update_attributes(node_params)
         format.html { redirect_to @node, notice: 'Node was successfully updated.' }
         format.json { head :no_content }
       else
@@ -95,6 +95,6 @@ class NodesController < ApplicationController
 
   private
   def node_params
-    params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url)
+    params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list)
   end
 end

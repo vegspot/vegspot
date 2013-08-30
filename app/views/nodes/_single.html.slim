@@ -13,9 +13,7 @@
       .col-md-6
         .meta-1
           small.text-muted= node.site.address
-          .tags
-            a.label.label-tag href="#" #cieciorka
-            a.label.label-tag href="#" #obiad
+          .tags= tags_as_labels node
 
         .meta-2
           ul.list-inline.commenters

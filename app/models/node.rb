@@ -2,12 +2,22 @@ class Node < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
-  before_save :set_site
-
+  # plugins
+  acts_as_taggable
   mount_uploader :thumbnail, ThumbnailUploader
 
+  # callbacks
+  before_save :set_site
+
+  # scopes
   scope :popular, -> { order('created_at ASC') }
   scope :recent,  -> { order('created_at DESC') }
+
+  def fetch_thumbnail
+    doc = Nokogiri::HTML(open(self.url))
+    image = doc.css('img')
+    throw image.first[:src]
+  end
 
 
   private

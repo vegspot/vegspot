@@ -17,4 +17,8 @@
         p= f.text_field :title, class: 'form-control input-lg', placeholder: 'Title'
         p.help-block Please keep it as short and descriptive as possible. Also, please try to remove any website branding (like blog title or blog description).
 
+    .form-group.row
+      .col-lg-12
+        p= f.text_field :tag_list, class: 'fotm-control', placeholder: 'Tags'
+
       .actions.text-center = f.submit 'Save', class: 'btn btn-primary btn-lg'
