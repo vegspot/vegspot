@@ -1,6 +1,6 @@
 class Node < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :body, :remote_thumbnail_url, :thumbnail, :title
+  attr_accessible :body, :remote_thumbnail_url, :thumbnail, :title, :url
 
   mount_uploader :thumbnail, ThumbnailUploader
 

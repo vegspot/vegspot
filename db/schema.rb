@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805172705) do
+ActiveRecord::Schema.define(:version => 20130830063221) do
 
   create_table "nodes", :force => true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130805172705) do
     t.string   "thumbnail"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "url"
   end
 
   add_index "nodes", ["user_id"], :name => "index_nodes_on_user_id"
