@@ -1,22 +1,20 @@
-= form_for @node, form: { multipart: true } do |f|
-  - if @node.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@node.errors.count, "error")} prohibited this node from being saved:"
-      ul
-        - @node.errors.full_messages.each do |message|
-          li = message
+.container
+  = form_for @node, form: { multipart: true } do |f|
+    - if @node.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@node.errors.count, "error")} prohibited this node from being saved:"
+        ul
+          - @node.errors.full_messages.each do |message|
+            li = message
 
-  .field
-    = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :remote_thumbnail_url
-    = f.text_field :remote_thumbnail_url
+    .row
+      .col-lg-10
+        p= f.text_field :url, class: 'form-control', placeholder: 'Link to what you want to share.'
+      a.btn.btn-default Fetch title
+    
+    .form-group.row
+      .col-lg-12
+        p= f.text_field :title, class: 'form-control input-lg', placeholder: 'Title'
+        p.help-block Please keep it as short and descriptive as possible. Also, please try to remove any website branding (like i.e. blog title) from it.
 
-  .actions = f.submit 'Save'
+      .actions.text-center = f.submit 'Save', class: 'btn btn-primary btn-lg'
