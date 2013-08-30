@@ -1,5 +1,3 @@
-@import "preboot.less";
-
 .nodes-list {
   padding: 20px;
 
@@ -104,12 +102,6 @@
 }
 
 .widget-latest-comments {
-  .panel-heading {
-    margin-bottom: 0;
-  }
-  ul {
-    margin-top: 0 !important;
-  }
   li {
     font-size: 0.9em;
     line-height: 1.2;

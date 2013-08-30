@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-9
-      .panel.nodes-list
+      .panel.panel-default.nodes-list
 
         - @nodes.each do |node|
           = render 'single', node: node

@@ -9,8 +9,6 @@ gem 'sqlite3'
 
 gem 'slim-rails'
 
-gem 'less-rails'
-
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
