@@ -20,6 +20,8 @@ gem 'turbolinks'
 
 gem 'rails-timeago', '~> 2.0'
 
+gem 'nokogiri'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

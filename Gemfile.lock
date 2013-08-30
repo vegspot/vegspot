@@ -67,6 +67,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.9)
     multipart-post (1.2.0)
+    nokogiri (1.5.2)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -156,6 +157,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   jquery-rails
+  nokogiri
   omniauth
   omniauth-facebook
   rails (= 4.0.0)

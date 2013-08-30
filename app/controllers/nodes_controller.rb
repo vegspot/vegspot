@@ -87,6 +87,12 @@ class NodesController < ApplicationController
     end
   end
 
+  def fetch_title
+    doc = Nokogiri::HTML(open(params[:node][:url]))
+    title = doc.css('title').first.content
+    render json: { title: title }
+  end
+
   private
   def node_params
     params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url)

@@ -1,4 +1,5 @@
 Vegspot::Application.routes.draw do
+  post 'nodes/fetch_title' => 'nodes#fetch_title', as: :fetch_link_title
   resources :nodes
   get 'recent' => 'nodes#index', as: :recent_nodes, mode: 'recent'
   get 'readed' => 'nodes#index', as: :readed_nodes, mode: 'readed'
