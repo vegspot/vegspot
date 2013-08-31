@@ -14,6 +14,15 @@ class Node < ActiveRecord::Base
   scope :popular, -> { order('created_at ASC') }
   scope :recent,  -> { order('created_at DESC') }
 
+  # methods
+
+  # Fetch URL and look for first image from there.
+  # Than, set it as node thumbnail.
+  def fetch_thumbnail
+    boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
+    self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
+    self.save!
+  end
 
   private
 
@@ -26,14 +35,5 @@ class Node < ActiveRecord::Base
     host.start_with?('www.') ? host[4..-1] : host
 
     self.site = Site.find_or_create_by(address: host)
-  end
-
-  # Fetch URL and look for first image from there.
-  # Than, set it as node thumbnail.
-  def fetch_thumbnail
-    doc = Nokogiri::HTML(open(self.url))
-    image = doc.css('img')
-    self.remote_thumbnail_url = image.first[:src]
-    self.save!
   end
 end

@@ -24,6 +24,8 @@ gem 'nokogiri'
 
 gem 'acts-as-taggable-on'
 
+gem 'boilerpipe'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

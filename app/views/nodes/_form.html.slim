@@ -19,6 +19,7 @@
 
     .form-group.row
       .col-lg-12
-        p= f.text_field :tag_list, class: 'fotm-control', placeholder: 'Tags'
+        p= f.text_field :tag_list, class: 'form-control', placeholder: 'Tags'
+        p.help-block Up to five, comma-separated tags you think best describes this content.
 
       .actions.text-center = f.submit 'Save', class: 'btn btn-primary btn-lg'
