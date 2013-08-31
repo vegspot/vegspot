@@ -1,36 +1,42 @@
 .media.node
-  a.pull-left.thumb
-    = image_tag node.thumbnail.thumb, width: 90
-
+  .pull-left.widget-score
+    a: i.icon-chevron-sign-up
+    span.score 28
+    a: i.icon-chevron-sign-down
   .media-body
-    h4.media-heading 
-      a href=node.url title=node.title 
-        = node.title
+    .media
+      a.pull-left.thumb
+        = image_tag node.thumbnail.thumb, width: 90
 
-    .row
-      .col-md-6
-        .meta-1
-          small.text-muted= node.site.address
-          .tags= tags_as_labels node
+      .media-body
+        h4.media-heading 
+          a href=node.url title=node.title 
+            = node.title
 
-        .meta-2
-          ul.list-inline.commenters
-            - 5.times do
-              li
-                = link_to node do
-                  = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
-            li
-              = link_to node, class: 'plus' do
-                | +4
-                i.icon-comments<
+        .row
+          .col-md-6
+            .meta-1
+              small.text-muted= node.site.address
+              .tags= tags_as_labels node
 
-      .col-lg-6.author
-        .media
-          a.pull-right
-            img.img-circle src=node.user.avatar_url width="30"
-          .media-body
-            .pull-right
-              strong.media-heading 
-                a href="#" = node.user.display_name
-              br
-              = timeago_tag node.created_at
+            .meta-2
+              ul.list-inline.commenters
+                - 5.times do
+                  li
+                    = link_to node do
+                      = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+                li
+                  = link_to node, class: 'plus' do
+                    | +4
+                    i.icon-comments<
+
+          .col-lg-6.author
+            .media
+              a.pull-right
+                img.img-circle src=node.user.avatar_url width="30"
+              .media-body
+                .pull-right
+                  strong.media-heading 
+                    a href="#" = node.user.display_name
+                  br
+                  = timeago_tag node.created_at
