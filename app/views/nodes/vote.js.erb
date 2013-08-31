@@ -1,1 +1,2 @@
-console.log('<%= @notice %>')
+// Replace score widget with the newly rendered one
+$('#score-node-<%= @node.id %>').replaceWith('<%= render "score", node: @node %>')
