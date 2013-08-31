@@ -1,0 +1,11 @@
+.panel.panel-default.widget-similar-nodes
+  .panel-heading
+    h3.panel-title Similar entries
+  .panel-body
+    - Node.limit(5).each do |node|
+      .media
+        a.pull-left
+          = image_tag node.thumbnail.url, size: '50x50'
+        .media-body
+          h5.media-heading
+            =link_to node.title, node
