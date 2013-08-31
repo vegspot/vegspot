@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    h3.panel-title About author
+  .panel-body
+    .media
+      a.pull-left
+        = image_tag @node.user.avatar_url
+      .media-body
+        h4.media-heading= @node.user.display_name
+        p.text-muted
+          small 
+            | 20 entries &#8226; 320 karma
