@@ -7,10 +7,28 @@
         hr
 
         .media.comment
-          a.pull-left 0
+          = render 'score', node: @node
           .media-body
             .media
-              a.pull-right
+              a.pull-left
                 = image_tag "https://graph.facebook.com/584562931/picture", size: '40x40', class: 'img-rounded'
               .media-body
+                .author
+                  strong Michał Bajur 
+                  small.text-muted.pull-right 20 minutes ago
+
                 p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend leo vitae massa bibendum, eu tincidunt sapien tempor. Fusce volutpat sodales posuere. Quisque ac tempus purus, et volutpat enim. Phasellus pharetra vestibulum posuere. Phasellus turpis nunc, lobortis sit amet diam at, consequat auctor nibh. Curabitur mollis metus sed nibh accumsan varius. Mauris varius, erat fermentum placerat pulvinar, est lectus cursus purus, eu volutpat neque ligula elementum dui. Aenean aliquet rutrum ipsum a rhoncus. Sed scelerisque sodales lacus, eget tristique leo rutrum in. Phasellus aliquet pretium libero, congue tincidunt magna semper vitae.
+
+
+        .media.comment
+          = render 'score', node: @node
+          .media-body
+            .media
+              a.pull-left
+                = image_tag "https://graph.facebook.com/584562931/picture", size: '40x40', class: 'img-rounded'
+              .media-body
+                .author
+                  strong Michał Bajur 
+                  small.text-muted.pull-right 20 minutes ago
+
+                p Bardzo mądre słowa po łacinie! :)
