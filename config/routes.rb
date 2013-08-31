@@ -1,6 +1,14 @@
 Vegspot::Application.routes.draw do
-  post 'nodes/fetch_title' => 'nodes#fetch_title', as: :fetch_link_title
-  resources :nodes
+
+  resources :nodes do
+    member do
+      get 'vote/:vote', action: 'vote', as: :vote_on
+    end
+    collection do
+      post 'fetch_title'
+    end
+  end
+
   get 'recent' => 'nodes#index', as: :recent_nodes, mode: 'recent'
   get 'readed' => 'nodes#index', as: :readed_nodes, mode: 'readed'
   get 'saved' => 'nodes#index', as: :saved_nodes, mode: 'saved'

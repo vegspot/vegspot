@@ -87,10 +87,51 @@ class NodesController < ApplicationController
     end
   end
 
+  # Fetch page title of given url
   def fetch_title
     doc = Nokogiri::HTML(open(params[:node][:url]))
     title = doc.css('title').first.content
     render json: { title: title }
+  end
+
+  # Casts a vote on node.
+  def vote
+    @node = Node.find(params[:id])
+
+    # If user is voting for
+    if params[:vote] == 'for'
+
+      # if user has allready voted, remove his vote.
+      # also decrease node owner karma by 1
+      if current_user.voted_for?(@node)
+        current_user.unvote_for(@node)
+        @node.user.change_karma(-1)
+
+      # or else, delete any existing vote by this user and cast a new FOR one. 
+      # karma_mod holds a value by which karma_nodes variable should be modified. 
+      # * If there were no votes on this node by user, increase it as usual by 1.
+      # * If there were any against vote, we need to add 2 karma points.
+      else
+        karma_mod = (current_user.voted_against?(@node)) ? +2 : +1
+        @node.user.change_karma(karma_mod)
+        current_user.vote_exclusively_for(@node)
+      end
+
+    # Everything in this elsif statement works the oposite way than in if statement. 
+    elsif params[:vote] == 'against'
+      if current_user.voted_against?(@node)
+        current_user.unvote_for(@node)
+        @node.user.change_karma(+1)
+      else
+        karma_mod = (current_user.voted_for?(@node)) ? -2 : -1
+        @node.user.change_karma(karma_mod)
+        current_user.vote_exclusively_against(@node)
+      end      
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

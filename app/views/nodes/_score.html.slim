@@ -1,4 +1,10 @@
-.pull-left.widget-score id="score-node-#{node.id}"
-  a.vote-up: i.icon-chevron-sign-up
-  span.score 28
-  a.vote-down: i.icon-chevron-sign-down
+.pull-left.widget-score id="score-node-#{node.id}" class=voted_widget_class(node)
+
+  = link_to vote_on_node_path(node, 'for'), remote: true, method: :get, class: 'vote-up' do
+    i.icon-chevron-sign-up
+
+  span.score
+    = node.plusminus
+
+  = link_to vote_on_node_path(node, 'against'), remote: true, method: :get, class: 'vote-down' do
+    i.icon-chevron-sign-down

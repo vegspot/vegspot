@@ -5,6 +5,7 @@ class Node < ActiveRecord::Base
   # plugins
   acts_as_taggable
   mount_uploader :thumbnail, ThumbnailUploader
+  acts_as_voteable
 
   # callbacks
   before_save  :set_site

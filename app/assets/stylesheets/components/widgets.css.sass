@@ -10,3 +10,17 @@
   a
     display: block
     color: #aaa
+
+  // 'Voted for' state
+  &.voted-for
+    .vote-up
+      color: #86ad59
+    .score
+      color: #86ad59
+
+  // 'Voted against' state
+  &.voted-against
+    .vote-down
+      color: red
+    .score
+      color: red

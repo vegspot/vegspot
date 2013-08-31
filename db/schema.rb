@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831124310) do
+ActiveRecord::Schema.define(version: 20130831161609) do
 
   create_table "nodes", force: true do |t|
     t.string   "title"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20130831124310) do
     t.datetime "updated_at",                          null: false
     t.string   "display_name"
     t.string   "user_name"
+    t.integer  "karma_nodes",            default: 0
+    t.integer  "karma_comments",         default: 0
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true

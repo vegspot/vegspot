@@ -9,11 +9,23 @@ class User < ActiveRecord::Base
   has_many :services, :dependent => :destroy
   has_many :nodes
 
+  # plugins
+  acts_as_voter
+  has_karma(:nodes, :as => :user)
+
   def avatar_url(size = 'small')
     if self.services.with_facebook.length > 0
       # width: 200px
       # <img src="https://graph.facebook.com/<?= $fid ?>/picture?type=large">
       "https://graph.facebook.com/#{self.services.with_facebook.first.uid}/picture"
     end
+  end
+
+  # Modify user karma points for nodes or for comments
+  def change_karma(amount = 1, type = 'node')
+    if type == 'node'
+      self.karma_nodes = self.karma_nodes + amount
+    end
+    self.save!
   end
 end
