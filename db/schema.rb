@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831161609) do
+ActiveRecord::Schema.define(version: 20130901085554) do
 
   create_table "nodes", force: true do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20130831161609) do
     t.datetime "updated_at", null: false
     t.string   "url"
     t.integer  "site_id"
+    t.integer  "score"
   end
 
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
