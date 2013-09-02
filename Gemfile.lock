@@ -1,3 +1,13 @@
+GIT
+  remote: git@github.com:petergoldstein/acts_as_commentable_with_threading.git
+  revision: 531c957fa423a5107f78104720e845e73a11d92f
+  branch: feature/rails_4
+  specs:
+    acts_as_commentable_with_threading (1.1.2)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      awesome_nested_set (>= 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,6 +39,8 @@ GEM
       rails (>= 3, < 5)
     arel (4.0.0)
     atomic (1.1.13)
+    awesome_nested_set (2.1.6)
+      activerecord (>= 3.0.0)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
     carrierwave (0.9.0)
@@ -160,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_commentable_with_threading!
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
