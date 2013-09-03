@@ -6,9 +6,9 @@ class NodesController < ApplicationController
   def index
     case params[:mode]
     when 'recent'
-      @nodes = Node.recent
+      @nodes = Node.recent.page(params[:page]).per(10)
     else
-      @nodes = Node.popular
+      @nodes = Node.popular.page(params[:page]).per(10)
     end
 
     respond_to do |format|

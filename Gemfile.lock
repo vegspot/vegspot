@@ -73,6 +73,9 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -177,6 +180,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   jquery-rails
+  kaminari
   nokogiri
   omniauth
   omniauth-facebook
