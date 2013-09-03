@@ -1,5 +1,5 @@
 .media#new-comment
-  a.pull-left
+  a.pull-left.avatar
     = image_tag current_user.avatar_url, size: '40x40', class: 'img-rounded'
   .media-body
     = form_for [@node, @comment] do |f|
@@ -7,6 +7,6 @@
         = f.text_area :body, class: 'form-control'
       .row
         .col-lg-6
-          p.text-muted You can use markdown to style your comment.
+          small.text-muted You can use markdown to style your comment.
         .col-lg-6
-          = f.submit 'Add comment', class: 'btn btn-xs pull-right'
+          = f.submit 'Add comment', class: 'btn btn-grey btn-xs pull-right'
