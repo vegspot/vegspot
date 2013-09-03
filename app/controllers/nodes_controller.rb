@@ -8,7 +8,7 @@ class NodesController < ApplicationController
     when 'recent'
       @nodes = Node.recent
     else
-      @nodes = Node.all
+      @nodes = Node.popular
     end
 
     respond_to do |format|

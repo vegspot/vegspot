@@ -13,7 +13,7 @@ class Node < ActiveRecord::Base
   after_create :fetch_thumbnail
 
   # scopes
-  scope :popular, -> { order('created_at ASC') }
+  scope :popular, -> { order('score DESC') }
   scope :recent,  -> { order('created_at DESC') }
 
   # methods
