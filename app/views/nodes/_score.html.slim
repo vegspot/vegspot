@@ -4,7 +4,7 @@
     i.icon-chevron-sign-up
 
   span.score
-    = node.plusminus
+    = node.score
 
   = link_to vote_on_node_path(node, 'against'), remote: true, method: :get, class: 'vote-down' do
     i.icon-chevron-sign-down

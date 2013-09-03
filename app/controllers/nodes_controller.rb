@@ -123,8 +123,9 @@ class NodesController < ApplicationController
       end      
     end
 
-    # Update karma counter
+    # Update karma counters
     @node.user.update_karma_counter
+    @node.update_score
 
     respond_to do |format|
       format.js
@@ -138,6 +139,6 @@ class NodesController < ApplicationController
 
   # Get recent comments
   def get_recent_comments
-    @recent_comments = Comment.limit(5)
+    @recent_comments = Comment.recent.limit(5)
   end
 end

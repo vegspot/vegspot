@@ -26,6 +26,12 @@ class Node < ActiveRecord::Base
     self.save!
   end
 
+  # Update score counter for node.
+  def update_score
+    self.score = self.plusminus
+    self.save!
+  end
+
   private
 
   # Check if site exists in database. If not, create it
