@@ -18,7 +18,8 @@ class NodesController < ApplicationController
   # GET /nodes/1
   # GET /nodes/1.json
   def show
-    @node = Node.find(params[:id])
+    @node     = Node.find(params[:id])
+    @comments = @node.comments
 
     respond_to do |format|
       format.html # show.html.erb

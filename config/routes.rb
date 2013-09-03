@@ -1,6 +1,7 @@
 Vegspot::Application.routes.draw do
 
   resources :nodes do
+    resources :comments
     member do
       get 'vote/:vote', action: 'vote', as: :vote_on
     end
