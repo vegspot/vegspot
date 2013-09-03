@@ -18,13 +18,16 @@
 
             .meta-2
               ul.list-inline.commenters
-                - 5.times do
+                - node.comment_threads.each do |comment|
                   li
                     = link_to node do
-                      = image_tag 'http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=20', class: 'img-rounded'
+                      = image_tag comment.user.avatar_url, class: 'img-rounded', size: '20x20'
                 li
-                  = link_to node, class: 'plus' do
-                    | +4
+                  = link_to node do
+                    - if node.comment_threads.length > 0
+                      = node.comment_threads.length
+                    - else
+                      | No comments yet
                     i.icon-comments<
 
           .col-lg-6.author
