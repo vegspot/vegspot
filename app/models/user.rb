@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # plugins
   acts_as_voter
-  has_karma(:nodes, :as => :user)
+  has_karma :nodes, :as => :user, weight: [1,1]
 
   def avatar_url(size = 'small')
     if self.services.with_facebook.length > 0
@@ -22,10 +22,8 @@ class User < ActiveRecord::Base
   end
 
   # Modify user karma points for nodes or for comments
-  def change_karma(amount = 1, type = 'node')
-    if type == 'node'
-      self.karma_nodes = self.karma_nodes + amount
-    end
+  def update_karma_counter
+    self.karma_nodes = self.karma
     self.save!
   end
 end

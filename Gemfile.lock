@@ -151,7 +151,7 @@ GEM
     thor (0.18.1)
     thread_safe (0.1.2)
       atomic
-    thumbs_up (0.6.5)
+    thumbs_up (0.6.7)
       activerecord
       statistics2
     tilt (1.4.1)
