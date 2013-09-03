@@ -3,6 +3,14 @@
     .col-lg-9
       .panel.panel-default.nodes-list
 
+        .panel-heading
+          h3.panel-title.pull-left Popular content
+          ul.nav.nav-tabs.pull-right
+            li.active: a Week
+            li: a Month
+            li: a All time
+          .clearfix
+
         - @nodes.each do |node|
           = render 'single', node: node
           hr
