@@ -3,13 +3,13 @@
     h5.panel-title Ostatnie komentarze
 
   ul.list-group
-    - 5.times do 
+    - @recent_comments.each do |comment|
       li.list-group-item
         a.pull-left
-          img.img-circle src="http://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=30"
+          = image_tag comment.user.avatar_url, size: '30x30', class: 'img-circle'
         .content
-          p Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficzn...
+          p= comment.body
           small.comment-on
             | do 
-            a href="" Pomidory zapiekane z farszem kurko...
+            = link_to comment.commentable.title, comment.commentable
         .clearfix

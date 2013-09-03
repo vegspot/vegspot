@@ -1,4 +1,6 @@
 class NodesController < ApplicationController
+  before_action :get_recent_comments, only: [:index]
+
   # GET /nodes
   # GET /nodes.json
   def index
@@ -132,5 +134,10 @@ class NodesController < ApplicationController
   private
   def node_params
     params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list)
+  end
+
+  # Get recent comments
+  def get_recent_comments
+    @recent_comments = Comment.limit(5)
   end
 end
