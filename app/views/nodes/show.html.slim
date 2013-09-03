@@ -6,23 +6,24 @@
 
         hr
 
-        - @node.root_comments.each do |comment|
-          .media.comment
-            = render 'score', node: @node
-            .media-body
-              .media
-                a.pull-left.avatar
-                  = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
-                .media-body
-                  .author
-                    strong= comment.user
-                    small.text-muted.pull-right= timeago_tag comment.created_at
-                  .content
-                    = comment.body
+        - if @node.comment_threads.any?
+          - @node.root_comments.each do |comment|
+            .media.comment
+              = render 'score', node: @node
+              .media-body
+                .media
+                  a.pull-left.avatar
+                    = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
+                  .media-body
+                    .author
+                      strong= comment.user
+                      small.text-muted.pull-right= timeago_tag comment.created_at
+                    .content
+                      = comment.body
 
-        hr
+          hr
         = render 'comments/form'
 
     .col-lg-3
       = render 'shared/sidebar/author'
-      = render 'shared/sidebar/popular_nodes'
+      = render 'shared/sidebar/related_nodes'

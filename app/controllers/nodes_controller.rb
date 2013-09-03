@@ -1,5 +1,6 @@
 class NodesController < ApplicationController
   before_action :get_recent_comments, only: [:index]
+  before_action :get_related_nodes, only: [:show]
 
   # GET /nodes
   # GET /nodes.json
@@ -140,5 +141,10 @@ class NodesController < ApplicationController
   # Get recent comments
   def get_recent_comments
     @recent_comments = Comment.recent.limit(5)
+  end
+
+  # Get related nodes
+  def get_related_nodes
+    @related_nodes = Node.popular.limit(10)
   end
 end

@@ -2,10 +2,10 @@
   .panel-heading
     h3.panel-title Popular
   .panel-body
-    - Node.limit(10).each do |node|
+    - @related_nodes.each do |node|
       .media
         a.pull-left
-          span.label.label-default 5
+          span.label.label-default= node.score
         .media-body
           h5.media-heading
             =link_to node.title, node
