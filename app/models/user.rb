@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   acts_as_voter
   has_karma :nodes, :as => :user, weight: [1,1]
 
+  def to_s
+    self.display_name
+  end
+
   def avatar_url(size = 'small')
     if self.services.with_facebook.length > 0
       # width: 200px
