@@ -24,8 +24,12 @@ class Node < ActiveRecord::Base
   # Than, set it as node thumbnail.
   def fetch_thumbnail
     boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
-    self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
-    self.save!
+    if boilerpipe['response']['images'].any?
+      self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
+      self.save!
+    else
+      false
+    end
   end
 
   # Update score counter for node.
