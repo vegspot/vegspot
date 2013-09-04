@@ -13,8 +13,10 @@ class Node < ActiveRecord::Base
   after_create :fetch_thumbnail
 
   # scopes
-  scope :popular, -> { order('score DESC') }
-  scope :recent,  -> { order('created_at DESC') }
+  scope :popular,    -> { order('score DESC') }
+  scope :recent,     -> { order('created_at DESC') }
+  scope :this_week,  -> { where('created_at BETWEEN ? AND ?', Date.today.beginning_of_week, Date.today.end_of_week) }
+  scope :this_month, -> { where('created_at BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month) }
 
   # methods
 

@@ -6,9 +6,9 @@
         .panel-heading
           h3.panel-title.pull-left Popular content
           ul.nav.nav-tabs.pull-right
-            li.active: a Week
-            li: a Month
-            li: a All time
+            li.active= link_to 'Week', '/'
+            li= link_to 'Month', params.merge(for: 'month')
+            li= link_to 'All time', params.merge(for: 'all')
           .clearfix
 
         - @nodes.each do |node|
