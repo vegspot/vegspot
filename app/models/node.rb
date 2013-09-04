@@ -15,8 +15,8 @@ class Node < ActiveRecord::Base
   # scopes
   scope :popular,    -> { order('score DESC') }
   scope :recent,     -> { order('created_at DESC') }
-  scope :this_week,  -> { where('created_at BETWEEN ? AND ?', Date.today.beginning_of_week, Date.today.end_of_week) }
-  scope :this_month, -> { where('created_at BETWEEN ? AND ?', Date.today.beginning_of_month, Date.today.end_of_month) }
+  scope :this_week,  -> { where('created_at > ?', Date.today - 1.week) }
+  scope :this_month, -> { where('created_at > ?', Date.today - 1.month) }
 
   # methods
 
@@ -24,6 +24,7 @@ class Node < ActiveRecord::Base
   # Than, set it as node thumbnail.
   def fetch_thumbnail
     boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
+    
     if boilerpipe['response']['images'].any?
       self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
       self.save!
