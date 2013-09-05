@@ -43,6 +43,7 @@ GEM
       activerecord (>= 3.0.0)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
+    cancan (1.6.10)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -176,6 +177,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   acts_as_commentable_with_threading!
+  cancan
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
