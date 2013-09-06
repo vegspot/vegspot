@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903183350) do
+ActiveRecord::Schema.define(version: 20130906195251) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20130903183350) do
     t.string   "url"
     t.integer  "site_id"
     t.integer  "score",      default: 0
+    t.integer  "node_type"
   end
 
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
