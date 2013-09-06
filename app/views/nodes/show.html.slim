@@ -23,7 +23,7 @@
                         = comment.body
 
             hr
-          = render 'comments/form'
+          = render 'comments/form' if can? :create, @comment
 
     .col-lg-3
       = render 'shared/sidebar/author'
