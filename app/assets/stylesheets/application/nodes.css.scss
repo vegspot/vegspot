@@ -9,7 +9,7 @@
     margin-top: 0;
     border-bottom: 1px solid #eee;
 
-    &:hover {
+    &:hover, &.active {
       background: #f9f9f9;
       box-shadow: 0 1px 0px #eee;
       border-bottom-left-radius: 3px;
