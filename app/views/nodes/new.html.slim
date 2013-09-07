@@ -1,8 +1,4 @@
-.container
-  .row
-    .col-md-8.col-md-offset-2
-      .panel.panel-default
-        - if params[:type] == 'link'
-          == render 'form_link'
-        - else
-          == render 'form_text'
+- if params[:type] == 'link'
+  == render 'nodes/link/new'
+- else
+  == render 'nodes/text/new'

@@ -1,42 +1,15 @@
-.media.node
-  = render 'score', node: node
-  .media-body
-    .media
-      a.pull-left.thumb
-        = image_tag node.thumbnail.thumb, width: 90
+- if mode == 'full'
 
-      .media-body
-        h4.media-heading 
-          a href=node.url title=node.title 
-            = node.title
+  - if node.is_link?
+    == render 'nodes/link/single_full', node: node
 
-        .row
-          .col-md-6
-            .meta-1
-              small.text-muted= node.site.address if node.site
-              .tags= tags_as_labels node
+  - if node.is_text?
+    == render 'nodes/text/single_full', node: node
 
-            .meta-2
-              ul.list-inline.commenters
-                - node.comment_threads.each do |comment|
-                  li
-                    = link_to node do
-                      = image_tag comment.user.avatar_url, class: 'img-rounded', size: '20x20'
-                li
-                  = link_to node do
-                    - if node.comment_threads.length > 0
-                      = node.comment_threads.length
-                    - else
-                      | No comments yet
-                    i.icon-comments<
+- elsif mode == 'list'
 
-          .col-lg-6.author
-            .media
-              a.pull-right
-                img.img-rounded src=node.user.avatar_url width="30"
-              .media-body
-                .pull-right
-                  strong.media-heading 
-                    a href="#" = node.user.display_name
-                  br
-                  = timeago_tag node.created_at
+  - if node.is_link?
+    == render 'nodes/link/single_list', node: node
+
+  - if node.is_text?
+    == render 'nodes/text/single_list', node: node

@@ -12,7 +12,7 @@
           .clearfix
 
         - @nodes.each do |node|
-          = render 'single', node: node
+          = render 'single', node: node, mode: 'list'
           hr
 
         = paginate @nodes

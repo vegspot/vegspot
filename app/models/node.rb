@@ -40,6 +40,14 @@ class Node < ActiveRecord::Base
     self.save!
   end
 
+  def is_link?
+    self.node_type == 0 || self.node_type == nil
+  end
+
+  def is_text?
+    self.node_type == 1
+  end
+
   private
 
   # Check if site exists in database. If not, create it
