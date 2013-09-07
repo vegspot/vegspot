@@ -34,6 +34,9 @@ gem "cancan"
 # Use this repo / branch to make it rails4 compatibile
 gem 'acts_as_commentable_with_threading', git: 'git@github.com:petergoldstein/acts_as_commentable_with_threading.git', branch: 'feature/rails_4'
 
+# Markdown support
+gem 'redcarpet'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
