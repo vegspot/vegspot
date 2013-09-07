@@ -1,8 +1,8 @@
-h1 Editing node
-
-== render 'form'
-
-= link_to 'Show', @node
-'|
-= link_to 'Back', nodes_path
-
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      .panel.panel-default
+        - if @node.node_type == 0
+        	== render 'form_link'
+        - else
+        	== render 'form_text'

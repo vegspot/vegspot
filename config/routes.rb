@@ -8,6 +8,10 @@ Vegspot::Application.routes.draw do
     collection do
       post 'fetch_title'
     end
+    new do
+      get 'link', action: 'new', type: 'link'
+      get 'text', action: 'new', type: 'text'
+    end
   end
 
   get 'recent' => 'nodes#index', as: :recent_nodes, mode: 'recent'

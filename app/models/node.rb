@@ -23,6 +23,7 @@ class Node < ActiveRecord::Base
   # Fetch URL and look for first image from there.
   # Than, set it as node thumbnail.
   def fetch_thumbnail
+    return if self.node_type != 0
     boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
     
     if boilerpipe['response']['images'].any?
@@ -44,6 +45,7 @@ class Node < ActiveRecord::Base
   # Check if site exists in database. If not, create it
   # and assign it to the node. If not, find and assign.
   def set_site
+    return if self.node_type != 0
     uri = URI.parse(self.url)
     uri = URI.parse("http://#{url}") if uri.scheme.nil?
     host = uri.host.downcase

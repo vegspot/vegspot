@@ -13,7 +13,7 @@
         .row
           .col-md-6
             .meta-1
-              small.text-muted= node.site.address
+              small.text-muted= node.site.address if node.site
               .tags= tags_as_labels node
 
             .meta-2
