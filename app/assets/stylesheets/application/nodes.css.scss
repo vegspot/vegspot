@@ -5,7 +5,16 @@
     margin: 20px -20px;
   }
 	.node {
-    padding: 0 20px;
+    padding: 16px 20px;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+
+    &:hover {
+      background: #f9f9f9;
+      box-shadow: 0 1px 0px #eee;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
     
     .thumb {
       margin-right: 20px;
@@ -14,6 +23,7 @@
     .media-heading {
       color: #333;
       font-weight: 400;
+      margin-bottom: 12px;
 
       .categories {
         margin-left: 9px;
@@ -29,12 +39,13 @@
       .meta-1 {
         font-weight: 300;
         margin-top: -3px;
+        margin-bottom: 5px;
 
         .tags {
           display: inline-block;
 
           a {
-            margin-left: 9px;
+            margin-right: 9px;
           }
         }
       }
@@ -46,18 +57,62 @@
       color: #666;
       opacity: 0.5;
 
-      .commenters {
+      .stats {
+        border: 1px solid #eee;
+        border-width: 1px 0 0;
         margin-top: 5px;
-        font-size: 0.9em;
-        display: inline-block;
-        margin-bottom: 0;
 
-        li {
-          padding: 0 5px 0 0;
+        .element {
+          padding: 6px 10px;
+          border-right: 1px solid #eee;
+          float: left
+        }
+        strong {
+          display: block;
+        }
+        span {
+          display: block;
+          color: #999;
+          text-transform: uppercase;
+          font-weight: 100;
+          font-size: 0.7em;
         }
 
-        .plus {
-          padding-left: 5px;
+        .points {
+          padding-left: 0;
+        }
+
+        .commenters {
+          border-right: 0;
+          padding-left: 7px;
+
+          ul {
+            margin-bottom: 0;
+
+            li {
+              padding-left: 0;
+            }
+          }
+        }
+
+        .author {
+          text-align: right;
+          color: #666;
+          line-height: 1.2;
+          font-size: 0.9em;
+          border-right: 0;
+          margin-top: 2px;
+          padding-right: 0;
+
+          .media {
+            margin-top: 0;
+          }
+
+          time {
+            font-weight: 100;
+            font-size: 0.9em;
+            color: #999          
+          }
         }
       }
     }
@@ -65,27 +120,6 @@
     .body {
       font-weight: 300;
       margin-top: 15px;
-    }
-
-    .author {
-      text-align: right;
-      opacity: 0.3;
-      color: #666;
-      line-height: 1.2;
-      font-size: 0.9em;
-
-      .media {
-        margin-top: 13px;
-      }
-    }
-
-    &:hover {
-      .meta-2 {
-        opacity: 0.5;
-      }
-      .author {
-        opacity: 0.5;
-      }
     }
   }
 }

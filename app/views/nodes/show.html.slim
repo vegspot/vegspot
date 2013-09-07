@@ -2,11 +2,12 @@
   .row
     .col-lg-9
       .panel.panel-default.nodes-list
+
+        / Display node info + body
+        = render 'single', node: @node, mode: 'full'
+
+        / Dislay comments list
         .panel-body
-          = render 'single', node: @node, mode: 'full'
-
-          hr
-
           - if @node.comment_threads.any?
             - @node.root_comments.each do |comment|
               .media.comment
@@ -23,6 +24,8 @@
                         = comment.body
 
             hr
+
+          / Display comments form
           = render 'comments/form' if can? :create, @comment
 
     .col-lg-3

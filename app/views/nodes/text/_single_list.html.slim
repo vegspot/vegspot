@@ -3,39 +3,44 @@
   .media-body
     .media
       a.pull-left.thumb
-        = image_tag 'http://placehold.it/90x67&text=Pytanie', width: 90
+        = image_tag 'http://placehold.it/120x90&text=Pytanie', width: 120
 
       .media-body
-        h4.media-heading 
-          a href=node_path(node) title=node.title 
-            = node.title
-
         .row
-          .col-md-6
+          .col-md-12
             .meta-1
               .tags= tags_as_labels node
 
-            .meta-2
-              ul.list-inline.commenters
-                - node.comment_threads.each do |comment|
-                  li
-                    = link_to node do
-                      = image_tag comment.user.avatar_url, class: 'img-rounded', size: '20x20'
-                li
-                  = link_to node do
-                    - if node.comment_threads.length > 0
-                      = node.comment_threads.length
-                    - else
-                      | No comments yet
-                    i.icon-comments<
+            h4.media-heading 
+              a href=node_path(node) title=node.title 
+                = node.title
 
-          .col-lg-6.author
-            .media
-              a.pull-right
-                img.img-rounded src=node.user.avatar_url width="30"
-              .media-body
-                .pull-right
-                  strong.media-heading 
-                    a href="#" = node.user.display_name
-                  br
-                  = timeago_tag node.created_at
+            .meta-2
+              .stats
+                / Amount of points earned by this node
+                .element.points
+                  strong 12
+                  span Points
+
+                / Amount of comments for this node
+                .element= link_to node do
+                  strong= node.comment_threads.length
+                  span Comments
+
+                / List of unique commenters
+                .element.commenters
+                  ul.list-inline
+                    - node.comment_threads.each do |comment|
+                      li= link_to node do
+                        = image_tag comment.user.avatar_url, class: 'img-rounded', size: '25x25'
+
+                / Info about author and time created
+                .element.pull-right.author
+                  .media
+                    a.pull-right
+                      img.img-rounded.pull-right src=node.user.avatar_url width="25"
+                    .media-body
+                      strong.media-header
+                        a href="#" = node.user.display_name
+                      = timeago_tag node.created_at
+                .clearfix
