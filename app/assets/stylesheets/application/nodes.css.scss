@@ -124,6 +124,7 @@
   }
 }
 
+// Single node view
 .nodes-show {
   .panel.node-body {
     padding: 35px;
@@ -138,6 +139,7 @@
     }
   }
 
+  // Text node
   .node-text {
     .media-heading {
       font-weight: 100;
@@ -147,6 +149,16 @@
 
       p {
         margin-bottom: 20px;
+      }
+    }
+
+    .meta-1 {
+      margin-top: 0 !important;
+      margin-bottom: 2px !important;
+
+      .label-tag {
+        font-size: 1em;
+        line-height: 1em;
       }
     }
   }
