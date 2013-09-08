@@ -15,7 +15,13 @@
         .row
           .col-lg-12
             .body
+              / Node content body
               = markdown node.body
+
+              / Action buttons
+              .btn-group
+                = link_to 'Edit', edit_node_path(node), class: 'btn btn-default btn-xs btn-grey' if can? :manage, node
+                = link_to 'Flag', '#', class: 'btn btn-default btn-xs btn-grey'
 
         .row
           .col-lg-12

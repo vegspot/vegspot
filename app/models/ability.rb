@@ -13,7 +13,7 @@ class Ability
     can :read, :all
 
     # Regular logged in user
-    if user
+    if user.persisted?
       can :create, Comment
       can :manage, Node, user_id: user.id
     end
