@@ -9,21 +9,27 @@ class Node < ActiveRecord::Base
   acts_as_commentable
 
   # callbacks
-  before_save  :set_site
+  after_save  :set_site
   after_create :fetch_thumbnail
 
   # scopes
   scope :popular,    -> { order('score DESC') }
   scope :recent,     -> { order('created_at DESC') }
-  scope :this_week,  -> { where('created_at > ?', Date.today - 1.week) }
-  scope :this_month, -> { where('created_at > ?', Date.today - 1.month) }
+  scope :this_week,  -> { where('created_at >= ?', Date.today - 1.week) }
+  scope :this_month, -> { where('created_at >= ?', Date.today - 1.month) }
+
+  # validation
+  validates :user,  presence: true
+  validates :title, presence: true, length: { minimum: 3 }
+  validates :url,   presence: true, if: :is_link?
+  validates :body,  presence: true, length: { minimum: 10 }, if: :is_text?
 
   # methods
 
   # Fetch URL and look for first image from there.
   # Than, set it as node thumbnail.
   def fetch_thumbnail
-    return if self.node_type != 0
+    return unless self.is_link?
     boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
     
     if boilerpipe['response']['images'].any?
@@ -40,10 +46,12 @@ class Node < ActiveRecord::Base
     self.save!
   end
 
+  # Is node a link?
   def is_link?
     self.node_type == 0 || self.node_type == nil
   end
 
+  # Is node a text?
   def is_text?
     self.node_type == 1
   end
@@ -53,11 +61,11 @@ class Node < ActiveRecord::Base
   # Check if site exists in database. If not, create it
   # and assign it to the node. If not, find and assign.
   def set_site
-    return if self.node_type != 0
+    return unless self.is_link?
     uri = URI.parse(self.url)
     uri = URI.parse("http://#{url}") if uri.scheme.nil?
     host = uri.host.downcase
-    host.start_with?('www.') ? host[4..-1] : host
+    host = host.start_with?('www.') ? host[4..-1] : host
 
     self.site = Site.find_or_create_by(address: host)
   end

@@ -1,13 +1,28 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: MyString
-  body: MyText
-  user: 
-  thumbnail: MyString
+link:
+  title: Test link
+  url: 'http://wegannerd.blogspot.com/2013/08/totalny-burger-king-z-batatow-i.html'
+  user: regular
+  created_at: <%= Date.today - 5.days %>
 
-two:
-  title: MyString
+text:
+  title: Test text
   body: MyText
-  user: 
+  user: regular
   thumbnail: MyString
+  created_at: <%= Date.today - 12.days %>
+
+week_ago:
+  title: Node added 7 days ago
+  body: This node tests if nodes added exactly 7 days ago are included in this_week scope.
+  user: regular
+  thumbnail: MyString
+  created_at: <%= Date.today - 7.days %>
+
+month_ago:
+  title: Node added 1 month ago
+  body: This node tests if nodes added exactly 1 month ago are included in this_week scope.
+  user: regular
+  thumbnail: MyString
+  created_at: <%= Date.today - 1.month %>

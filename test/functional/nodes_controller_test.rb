@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class NodesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
     @node = nodes(:one)
   end
@@ -17,6 +19,7 @@ class NodesControllerTest < ActionController::TestCase
   end
 
   test "should create node" do
+    sign_in users(:admin)
     assert_difference('Node.count') do
       post :create, node: { body: @node.body, thumbnail: @node.thumbnail, title: @node.title }
     end
