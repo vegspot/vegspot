@@ -15,11 +15,12 @@
           = render 'single', node: node, mode: 'list'
 
         = paginate @nodes
-        ul.pager
-          li.previous
-            a Następne
-          li.next
-            a Poprzednie
+        .panel-body
+          ul.pager
+            li.previous
+              a Następne
+            li.next
+              a Poprzednie
 
     .col-lg-3#sidebar
       = render 'shared/sidebar/nodes_filter'
