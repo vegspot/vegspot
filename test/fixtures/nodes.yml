@@ -9,7 +9,7 @@ link:
 text:
   title: Test text
   body: MyText
-  user: regular
+  user: regular2
   thumbnail: MyString
   created_at: <%= Date.today - 12.days %>
 

@@ -9,5 +9,9 @@ admin:
   encrypted_password: SamplePassword
 
 regular:
-  email: rabbit@vegspot.net
-  encrypted_password: "ima normall user"
+  email: regular@vegspot.net
+  encrypted_password: "password"
+
+regular2:
+  email: regular2@vegspot.net
+  encrypted_password: "password"
