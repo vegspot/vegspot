@@ -9,7 +9,7 @@
     margin-top: 0;
     border-bottom: 1px solid #eee;
 
-    &:hover, &.active {
+    &:hover, &.node-active {
       background: #f9f9f9;
       box-shadow: 0 1px 0px #eee;
       border-bottom-left-radius: 3px;
@@ -135,6 +135,19 @@
     h1 {
       font-weight: 600;
       margin-top: 0;
+    }
+  }
+
+  .node-text {
+    .media-heading {
+      font-weight: 100;
+    }
+    .body {
+      font-size: 1.2em;
+
+      p {
+        margin-bottom: 20px;
+      }
     }
   }
 }

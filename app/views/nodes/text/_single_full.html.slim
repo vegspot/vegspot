@@ -1,4 +1,4 @@
-.media.node.active
+.media.node.node-active.node-text.node-full
   = render 'score', node: node
   .media-body
     .media
@@ -8,7 +8,7 @@
             .meta-1
               .tags= tags_as_labels node
 
-            h4.media-heading 
+            h1.media-heading 
               a href=node_path(node) title=node.title 
                 = node.title
 
