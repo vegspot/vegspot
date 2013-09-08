@@ -14,13 +14,8 @@
         - @nodes.each do |node|
           = render 'single', node: node, mode: 'list'
 
-        = paginate @nodes
         .panel-body
-          ul.pager
-            li.previous
-              a Następne
-            li.next
-              a Poprzednie
+          = paginate @nodes, theme: 'minimal'
 
     .col-lg-3#sidebar
       = render 'shared/sidebar/nodes_filter'
