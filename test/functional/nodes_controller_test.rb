@@ -44,19 +44,19 @@ class NodesControllerTest < ActionController::TestCase
   #   assert_response :success
   # end
 
-  test "should not get edit for guest" do
-    assert_raises CanCan::AccessDenied do
-      get :edit, id: @node
-    end
-  end
-
   test "should get edit for node owner" do
     sign_in users(:regular)
     get :edit, id: nodes(:link)
     assert_response :success
   end
 
-  test "should not get edit for not node owner" do
+  test "should not get edit for guest" do
+    assert_raises CanCan::AccessDenied do
+      get :edit, id: @node
+    end
+  end
+
+  test "should not get edit for user that is not node owner" do
     sign_in users(:regular)
     assert_raises CanCan::AccessDenied do
       get :edit, id: nodes(:text)
