@@ -15,7 +15,7 @@ describe Node do
   end
 
   it "should require a node type" do
-    @new_node.should be_valid
+    @new_node.should_not be_valid
   end
 
   it "should require a node owner" do
