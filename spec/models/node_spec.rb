@@ -1,13 +1,50 @@
 require 'spec_helper'
 
 describe Node do
-  fixtures :nodes
+  fixtures :nodes, :users
 
-  it "should not save node without a type" do
-    node = Node.new
-    node.title = 'Test node without a type'
-    node.url   = 'http://vegspot.net'
-    node.save.should eq(false)
+  before(:each) do
+    @new_node       = Node.new
+    @new_node.title = 'Test node'
+    @new_node.user  = users(:regular)
+  end
+
+  it "should require a title" do
+    @new_node.title = nil
+    @new_node.should_not be_valid
+  end
+
+  it "should require a node type" do
+    @new_node.should_not be_valid
+  end
+
+  it "should require a node owner" do
+    @new_node.user = nil
+    @new_node.should_not be_valid
+  end
+
+  context "type is link" do
+    before(:each) do
+      @new_node.node_type = 0
+      @new_node.url       = 'http://domain.com'
+    end
+
+    it "should require a node url" do
+      @new_node.url = nil
+      @new_node.should_not be_valid
+    end
+  end
+
+  context "type is text" do
+    before(:each) do
+      @new_node.node_type = 1
+      @new_node.body      = 'Example body'
+    end
+
+    it "should require a node body" do
+      @new_node.body = nil
+      @new_node.should_not be_valid
+    end
   end
 end
 
