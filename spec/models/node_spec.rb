@@ -4,10 +4,10 @@ describe Node do
   fixtures :nodes, :users
 
   before(:each) do
-    @new_node       = Node.new
-    @new_node.title = 'Test node'
-    @new_node.user  = users(:regular)
-    @new_node.url   = 'http://domain.com'
+    @new_node           = Node.new
+    @new_node.title     = 'Test node'
+    @new_node.user      = users(:regular)
+    @new_node.url       = 'http://domain.com'
     @new_node.node_type = 0
   end
 
@@ -26,10 +26,7 @@ describe Node do
     @new_node.should_not be_valid
   end
 
-  it "should validate title length" do
-    pending
-  end
-
+  # Tests for node type 'link'
   context "type is link" do
     before(:each) do
       @new_node.node_type = 0
@@ -58,6 +55,7 @@ describe Node do
     end
   end
 
+  # Tests for node type 'text'
   context "type is text" do
     before(:each) do
       @new_node.node_type = 1
@@ -72,10 +70,6 @@ describe Node do
     it "should not require a node url" do
       @new_node.url = nil
       @new_node.should be_valid
-    end
-
-    it "should validate body length" do
-      pending
     end
 
   end
