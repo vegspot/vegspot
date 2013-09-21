@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20130906195251) do
     t.text     "body"
     t.integer  "user_id"
     t.string   "thumbnail"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "url"
     t.integer  "site_id"
     t.integer  "score",      default: 0
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20130906195251) do
     t.string   "uid"
     t.string   "uname"
     t.string   "uemail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sites", force: true do |t|
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20130906195251) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "display_name"
     t.string   "user_name"
     t.integer  "karma_nodes",            default: 0

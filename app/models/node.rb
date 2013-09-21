@@ -19,10 +19,11 @@ class Node < ActiveRecord::Base
   scope :this_month, -> { where('created_at >= ?', Date.today - 1.month) }
 
   # validation
-  validates :user,  presence: true
-  validates :title, presence: true, length: { minimum: 3 }
-  validates :url,   presence: true, if: :is_link?
-  validates :body,  presence: true, length: { minimum: 10 }, if: :is_text?
+  validates :user,      presence: true
+  validates :title,     presence: true, length: { minimum: 3 }
+  validates :url,       presence: true, if: :is_link?, format: URI::regexp(%w(http https))
+  validates :body,      presence: true, length: { minimum: 10 }, if: :is_text?
+  validates :node_type, presence: true, inclusion: 0..1
 
   # methods
 

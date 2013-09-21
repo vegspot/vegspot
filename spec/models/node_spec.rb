@@ -1,93 +1,69 @@
 require 'spec_helper'
 
 describe Node do
-  fixtures :nodes, :users
-
-  before(:each) do
-    @new_node           = Node.new
-    @new_node.title     = 'Test node'
-    @new_node.user      = users(:regular)
-    @new_node.url       = 'http://domain.com'
-    @new_node.node_type = 0
+  it "has a valid factory" do
+    FactoryGirl.create(:link_node).should be_valid
   end
 
   it "is invalid without a title" do
-    @new_node.title = nil
-    @new_node.should_not be_valid
+    FactoryGirl.build(:link_node, title: nil).should_not be_valid
   end
 
   it "is invalid without a node type" do
-    @new_node.node_type = nil
-    @new_node.should_not be_valid
+    FactoryGirl.build(:link_node, node_type: nil).should_not be_valid
+  end
+
+  it "is invalid with wrong node type" do
+    FactoryGirl.build(:text_node, node_type: 9999).should_not be_valid
   end
 
   it "is invalid without a node owner" do
-    @new_node.user = nil
-    @new_node.should_not be_valid
+    FactoryGirl.build(:link_node, user: nil).should_not be_valid
   end
 
-  # Tests for node type 'link'
-  context "type is link" do
-    before(:each) do
-      @new_node.node_type = 0
-      @new_node.url       = 'http://domain.com'
-    end
-
+  context "type link" do
     it "is invalid without a node url" do
-      @new_node.url = nil
-      @new_node.should_not be_valid
+      FactoryGirl.build(:link_node, url: nil).should_not be_valid
     end
 
     it "is valid without a node body" do
-      @new_node.body = nil
-      @new_node.should be_valid
+      FactoryGirl.build(:link_node, body: nil).should be_valid
     end
 
-    it "is valid with wrong formatted url" do
-      @new_node.url = "domain.com"
-      @new_node.should_not be_valid
-
-      @new_node.url = "http://domain"
-      @new_node.should_not be_valid
-
-      @new_node.url = "www"
-      @new_node.should_not be_valid
+    it "is invalid with wrong formatted url" do
+      FactoryGirl.build(:link_node, url: "domain.com").should_not be_valid
+      FactoryGirl.build(:link_node, url: "domain.").should_not be_valid
+      FactoryGirl.build(:link_node, url: "domain").should_not be_valid
     end
-    
   end
 
-  # Tests for node type 'text'
-  context "type is text" do
-    before(:each) do
-      @new_node.node_type = 1
-      @new_node.body      = 'Example body'
-    end
-
+  context "type text" do
     it "is invalid without a node body" do
-      @new_node.body = nil
-      @new_node.should_not be_valid
+      FactoryGirl.build(:text_node, body: nil).should_not be_valid
     end
 
     it "is valid without a node url" do
-      @new_node.url = nil
-      @new_node.should be_valid
+      FactoryGirl.build(:text_node, url: nil).should be_valid
     end
-
   end
-end
 
-describe Node do
-  fixtures :nodes
-
+  # Methods
   describe "#is_text?" do
     it "returns true for text node" do
-      node = nodes(:text)
-      node.is_text?.should eq(true)
+      FactoryGirl.build(:text_node).is_text?.should eq(true)
     end
 
     it "returns false for link node" do
-      node = nodes(:link)
-      node.is_text?.should eq(false)
+      FactoryGirl.build(:link_node).is_text?.should eq(false)
+    end
+  end
+
+  describe "#is_link?" do
+    it "returns true for link node" do
+      FactoryGirl.build(:link_node).is_link?.should eq(true)
+    end
+    it "returns false for text node" do
+      FactoryGirl.build(:text_node).is_link?.should eq(false)
     end
   end
 end
