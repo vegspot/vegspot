@@ -24,6 +24,7 @@ class Node < ActiveRecord::Base
   validates :url,       presence: true, if: :is_link?, format: URI::regexp(%w(http https))
   validates :body,      presence: true, length: { minimum: 10 }, if: :is_text?
   validates :node_type, presence: true, inclusion: 0..1
+  validates :tag_list,  presence: true, length: { maximum: 5 }
 
   # methods
 

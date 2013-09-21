@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :node do
+    tag_list Faker::Lorem.sentence(5)
+
     factory :link_node do
       title      Faker::Lorem.sentence(5)
       url        "http://wegannerd.blogspot.com/2013/08/totalny-burger-king-z-batatow-i.html"

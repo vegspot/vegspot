@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :omniauthable
 
-  has_many :services, :dependent => :destroy
+  has_many :services, dependent: :destroy
   has_many :nodes
 
   # plugins

@@ -6,6 +6,7 @@ FactoryGirl.define do
 
     factory :admin_user do
       sequence(:email) { |n| "person#{n}@example.com" }
+      is_admin true
     end
 
     factory :regular_user do
