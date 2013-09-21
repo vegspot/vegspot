@@ -76,20 +76,45 @@ describe Node do
   end
 
   describe "#fetch_thumbnail" do
-    # Commenting these out cause they are slow
-    #
-    # it "fetches thumbnail for a link node" do
-    #   FactoryGirl.create(:link_node).thumbnail.should_not eq(nil)
-    # end
+    it "fetches thumbnail for a link node" do
+      FactoryGirl.create(:link_node).thumbnail.should_not eq(nil)
+    end
 
-    # it "returns true if thumbnail has been fetched" do
-    #   FactoryGirl.build(:link_node).fetch_thumbnail.should eq(true)
-    # end
+    it "returns true if thumbnail has been fetched" do
+      FactoryGirl.build(:link_node).fetch_thumbnail.should eq(true)
+    end
 
-    # it "returns false if thumbnail has not been fetched" do
-    #   FactoryGirl.build(:link_node, url: 'http://google.pl').fetch_thumbnail.should eq(false)
-    # end
-    
-    it "sets 'needs_thumb' flag if thumbnail has not been fetched"
+    it "returns false if thumbnail has not been fetched" do
+      FactoryGirl.create(:link_node, url: 'http://google.pl').fetch_thumbnail.should eq(false)
+    end
+
+    it "sets 'needs_thumb' flag if thumbnail has not been fetched" do
+      node = FactoryGirl.create(:link_node, url: 'http://google.pl')
+      node.is_flagged?('needs_thumb').should eq(true)
+    end
+  end
+
+  describe "#has_flags?" do
+    it "returns false if there are no flags" do
+      FactoryGirl.build(:link_node).is_flagged?.should eq(false)
+    end
+
+    context "with a key parameter" do
+      it "returns true if there are any flags of given type for node" do
+        node = FactoryGirl.create(:link_node)
+        user = FactoryGirl.create(:regular_user)
+        flag = Flag.build_for(node, 'needs_thumb', user).save!
+        node.is_flagged?('needs_thumb').should eq(true)
+      end
+    end
+
+    context "without a key parameter" do
+      it "returns true if there are any flags for current node" do
+        node = FactoryGirl.create(:link_node)
+        user = FactoryGirl.create(:regular_user)
+        flag = Flag.build_for(node, 'needs_thumb', user).save!
+        node.is_flagged?.should eq(true)
+      end
+    end
   end
 end

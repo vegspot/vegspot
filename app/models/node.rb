@@ -1,6 +1,7 @@
 class Node < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
+  has_many   :flags, foreign_key: 'flagged_id'
 
   # plugins
   acts_as_taggable
@@ -38,6 +39,8 @@ class Node < ActiveRecord::Base
       self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
       self.save!
     else
+      # Set 'needs_thumb' flag
+      Flag.build_for(self, 'needs_thumb', self.user, 'Thumbnail has not been fetched automatically.').save!
       false
     end
   end
@@ -56,6 +59,13 @@ class Node < ActiveRecord::Base
   # Is node a text?
   def is_text?
     self.node_type == 1
+  end
+
+  # Determine if node has flags?
+  def is_flagged?(key = nil)
+    node = self.flags
+    node = node.where(key: key) if key
+    node.length > 0
   end
 
   private
