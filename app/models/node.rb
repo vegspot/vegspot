@@ -9,7 +9,7 @@ class Node < ActiveRecord::Base
   acts_as_commentable
 
   # callbacks
-  after_save  :set_site
+  after_save   :set_site
   after_create :fetch_thumbnail
 
   # scopes
@@ -34,7 +34,7 @@ class Node < ActiveRecord::Base
     return unless self.is_link?
     boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
     
-    if boilerpipe['response']['images'].any?
+    if boilerpipe['response'] && boilerpipe['response']['images'].any?
       self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
       self.save!
     else
@@ -64,8 +64,8 @@ class Node < ActiveRecord::Base
   # and assign it to the node. If not, find and assign.
   def set_site
     return unless self.is_link?
-    uri = URI.parse(self.url)
-    uri = URI.parse("http://#{url}") if uri.scheme.nil?
+    uri  = URI.parse(self.url)
+    uri  = URI.parse("http://#{url}") if uri.scheme.nil?
     host = uri.host.downcase
     host = host.start_with?('www.') ? host[4..-1] : host
 

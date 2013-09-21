@@ -74,4 +74,22 @@ describe Node do
       FactoryGirl.build(:text_node).is_link?.should eq(false)
     end
   end
+
+  describe "#fetch_thumbnail" do
+    # Commenting these out cause they are slow
+    #
+    # it "fetches thumbnail for a link node" do
+    #   FactoryGirl.create(:link_node).thumbnail.should_not eq(nil)
+    # end
+
+    # it "returns true if thumbnail has been fetched" do
+    #   FactoryGirl.build(:link_node).fetch_thumbnail.should eq(true)
+    # end
+
+    # it "returns false if thumbnail has not been fetched" do
+    #   FactoryGirl.build(:link_node, url: 'http://google.pl').fetch_thumbnail.should eq(false)
+    # end
+    
+    it "sets 'needs_thumb' flag if thumbnail has not been fetched"
+  end
 end
