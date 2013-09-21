@@ -21,6 +21,9 @@ describe Node do
     FactoryGirl.build(:link_node, user: nil).should_not be_valid
   end
 
+  it "is invalid without any tags"
+  it "is invalid with more than 5 tags"
+
   context "type link" do
     it "is invalid without a node url" do
       FactoryGirl.build(:link_node, url: nil).should_not be_valid
