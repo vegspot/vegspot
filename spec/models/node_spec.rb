@@ -11,17 +11,17 @@ describe Node do
     @new_node.node_type = 0
   end
 
-  it "should require a title" do
+  it "is invalid without a title" do
     @new_node.title = nil
     @new_node.should_not be_valid
   end
 
-  it "should require a node type" do
+  it "is invalid without a node type" do
     @new_node.node_type = nil
     @new_node.should_not be_valid
   end
 
-  it "should require a node owner" do
+  it "is invalid without a node owner" do
     @new_node.user = nil
     @new_node.should_not be_valid
   end
@@ -33,17 +33,17 @@ describe Node do
       @new_node.url       = 'http://domain.com'
     end
 
-    it "should require a node url" do
+    it "is invalid without a node url" do
       @new_node.url = nil
       @new_node.should_not be_valid
     end
 
-    it "should not require a node body" do
+    it "is valid without a node body" do
       @new_node.body = nil
       @new_node.should be_valid
     end
 
-    it "should not be save with wrong formatted url" do
+    it "is valid with wrong formatted url" do
       @new_node.url = "domain.com"
       @new_node.should_not be_valid
 
@@ -53,6 +53,7 @@ describe Node do
       @new_node.url = "www"
       @new_node.should_not be_valid
     end
+    
   end
 
   # Tests for node type 'text'
@@ -62,12 +63,12 @@ describe Node do
       @new_node.body      = 'Example body'
     end
 
-    it "should require a node body" do
+    it "is invalid without a node body" do
       @new_node.body = nil
       @new_node.should_not be_valid
     end
 
-    it "should not require a node url" do
+    it "is valid without a node url" do
       @new_node.url = nil
       @new_node.should be_valid
     end
