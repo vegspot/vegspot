@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Node do
   it "has a valid factory" do
-    FactoryGirl.create(:link_node).should be_valid
+    FactoryGirl.build(:link_node).should be_valid
   end
 
   it "is invalid without a title" do
