@@ -2,7 +2,7 @@ class NodesController < ApplicationController
   before_action :get_recent_comments, only: [:index]
   before_action :get_related_nodes, only: [:show]
 
-  load_and_authorize_resource
+  #load_and_authorize_resource
 
   # GET /nodes
   # GET /nodes.json
@@ -153,6 +153,7 @@ class NodesController < ApplicationController
 
   private
   def node_params
+    params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :node_type)
     if params[:node][:node_type] == '0'
       params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :node_type)
     else

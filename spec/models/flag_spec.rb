@@ -36,4 +36,28 @@ describe Flag do
   it "is invalid with too long description" do
     FactoryGirl.build(:needs_thumb_flag, description: Faker::Lorem.characters(501)).should_not be_valid
   end
+
+  describe "#resolve" do
+    it "is setting flag as resolved" do
+      flag = FactoryGirl.create(:needs_thumb_flag)
+      flag.resolve
+      flag.is_resolved?.should eq(true)
+    end
+
+    it "is setting all related flags for given object as resolved" do
+      flag1 = FactoryGirl.create(:needs_thumb_flag)
+      flag2 = FactoryGirl.create(:needs_thumb_flag)
+      flag1.resolve
+
+      flag2.is_resolved?.should eq(true)
+    end
+
+    it "is not setting all related flags for other objects as resolved" do
+      flag1 = FactoryGirl.create(:needs_thumb_flag)
+      flag2 = FactoryGirl.create(:spam_flag)
+      flag1.resolve
+
+      flag2.is_resolved?.should eq(false)
+    end
+  end
 end

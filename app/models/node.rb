@@ -1,7 +1,7 @@
 class Node < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
-  has_many   :flags, foreign_key: 'flagged_id'
+  has_many   :flags, foreign_key: 'flagged_id', dependent: :destroy
 
   # plugins
   acts_as_taggable

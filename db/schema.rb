@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921112658) do
+ActiveRecord::Schema.define(version: 20130921130845) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -38,23 +38,39 @@ ActiveRecord::Schema.define(version: 20130921112658) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_resolved"
   end
 
   add_index "flags", ["user_id"], name: "index_flags_on_user_id"
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "nodes", force: true do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "user_id"
     t.string   "thumbnail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "url"
     t.integer  "site_id"
     t.integer  "score",      default: 0
     t.integer  "node_type"
+    t.string   "slug"
   end
 
+  add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true
   add_index "nodes", ["user_id"], name: "index_nodes_on_user_id"
 
   create_table "services", force: true do |t|
@@ -63,8 +79,8 @@ ActiveRecord::Schema.define(version: 20130921112658) do
     t.string   "uid"
     t.string   "uname"
     t.string   "uemail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sites", force: true do |t|
@@ -105,8 +121,8 @@ ActiveRecord::Schema.define(version: 20130921112658) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "display_name"
     t.string   "user_name"
     t.integer  "karma_nodes",            default: 0

@@ -12,5 +12,14 @@ FactoryGirl.define do
       # No idea why it's not working...
       # association :flagged_id, factory: :link_node
     end
+
+    factory :spam_flag do
+      key "spam"
+      flagged_type "Node"
+      description "This node is a spam for sure"
+      flagged_id 1
+
+      association :user, factory: :regular_user
+    end
   end
 end
