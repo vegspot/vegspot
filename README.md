@@ -7,7 +7,7 @@ The finest vegan and vegetarian online community.
 
 1. Clone the source code
 
-        git clone git@github.com:vegspot/vegspot.git
+        git clone git://github.com/vegspot/vegspot.git
     
 2. Choose dev branch
 
