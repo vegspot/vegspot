@@ -16,4 +16,8 @@ describe Comment do
   it "is invalid without an author" do
     FactoryGirl.build(:comment, user: nil).should_not be_valid
   end
+
+  it "belongs to node" do
+    FactoryGirl.build(:comment).commentable.should_not eq(nil)
+  end
 end

@@ -83,6 +83,11 @@ class Node < ActiveRecord::Base
     node.length > 0
   end
 
+  # Returns unique comments for a node
+  def actors
+    Comment.where(commentable: self).group(:user_id)
+  end
+
   private
 
   # Check if site exists in database. If not, create it

@@ -131,6 +131,10 @@ describe Node do
   end
 
   describe "#actors" do
-    it "returns a list of unique actors for node"
+    it "returns a list of unique actors for node" do
+      node = FactoryGirl.create(:link_node, :with_comments)
+      node.actors.length.should eq(1)
+      #node.comment_threads.length.should eq(3)
+    end
   end
 end

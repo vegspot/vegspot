@@ -40,5 +40,11 @@ FactoryGirl.define do
 
       association :user, factory: :regular_user
     end
+
+    trait :with_comments do
+      after(:create) do |instance|
+        create_list :comment, 3, commentable: instance
+      end
+    end
   end
 end
