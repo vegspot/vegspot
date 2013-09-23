@@ -79,6 +79,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    fastimage (1.5.2)
     ffi (1.9.0)
     formatador (0.2.4)
     guard (1.8.3)
@@ -244,6 +245,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  fastimage
   guard-rspec
   jquery-rails
   kaminari

@@ -11,7 +11,6 @@ class Node < ActiveRecord::Base
 
   # callbacks
   after_save   :set_site
-  after_create :fetch_thumbnail
 
   # scopes
   scope :popular,    -> { order('score DESC') }
@@ -31,18 +30,34 @@ class Node < ActiveRecord::Base
 
   # Fetch URL and look for first image from there.
   # Than, set it as node thumbnail.
+  #
+  # TODO: This method should be more smart for sure.
   def fetch_thumbnail
     return unless self.is_link?
-    boilerpipe = JSON.parse open("http://boilerpipe-web.appspot.com/extract?url=#{self.url}&extractor=ArticleExtractor&output=json&extractImages=3").read
+
+    biggest_image = { url: nil, width: 0 }
+    doc = Nokogiri::HTML open(self.url)
     
-    if boilerpipe['response'] && boilerpipe['response']['images'].any?
-      self.remote_thumbnail_url = boilerpipe['response']['images'].first['src']
-      self.save!
-    else
-      # Set 'needs_thumb' flag
-      Flag.build_for(self, 'needs_thumb', self.user, 'Thumbnail has not been fetched automatically.').save!
-      false
+    doc.css('img').each do |img|
+      image = { size: FastImage.size(img[:src]), type: FastImage.type(img[:src]) }
+
+      if image[:size] != nil && 
+         image[:type] != :gif && 
+         image[:size][0] > biggest_image[:width]
+         
+        biggest_image = { url: img[:src], width: image[:size][0] }
+      end
     end
+    
+    if biggest_image[:url]
+      self.remote_thumbnail_url = biggest_image[:url]
+      self.save!
+      return true
+    end
+    
+    # Set 'needs_thumb' flag
+    Flag.build_for(self, 'needs_thumb', self.user, 'Thumbnail has not been fetched automatically.').save!
+    return false
   end
 
   # Update score counter for node.

@@ -75,26 +75,7 @@ describe Node do
     end
   end
 
-  describe "#fetch_thumbnail" do
-    it "fetches thumbnail for a link node" do
-      FactoryGirl.create(:link_node).thumbnail.should_not eq(nil)
-    end
-
-    it "returns true if thumbnail has been fetched" do
-      FactoryGirl.build(:link_node).fetch_thumbnail.should eq(true)
-    end
-
-    it "returns false if thumbnail has not been fetched" do
-      FactoryGirl.create(:link_node, url: 'http://google.pl').fetch_thumbnail.should eq(false)
-    end
-
-    it "sets 'needs_thumb' flag if thumbnail has not been fetched" do
-      node = FactoryGirl.create(:link_node, url: 'http://google.pl')
-      node.is_flagged?('needs_thumb').should eq(true)
-    end
-  end
-
-  describe "#has_flags?" do
+  describe "#is_flagged?" do
     it "returns false if there are no flags" do
       FactoryGirl.build(:link_node).is_flagged?.should eq(false)
     end
@@ -116,5 +97,40 @@ describe Node do
         node.is_flagged?.should eq(true)
       end
     end
+  end
+
+  describe "#fetch_thumbnail" do
+    before(:each) do
+      @node = FactoryGirl.create(:link_node)
+    end
+
+    it "returns true if image has been fetched" do
+      @node.fetch_thumbnail.should eq(true)
+    end
+
+    it "returns false if image has not been fetched" do
+      @node.url = 'http://google.pl'
+      @node.fetch_thumbnail.should eq(false)
+    end
+
+    it "not fetches gif images" do
+      @node.fetch_thumbnail
+      FastImage.type(@node.thumbnail.path).should_not eq(:gif)
+    end
+
+    it "fetches the biggest image from a given link" do
+      @node.fetch_thumbnail
+      @node.thumbnail.filename.should eq('4.jpg')
+    end
+
+    it "sets 'needs_thumb' flag if thumbnail has not been fetched" do
+      @node.url = 'http://google.pl'
+      @node.fetch_thumbnail
+      @node.is_flagged?('needs_thumb').should eq(true)
+    end
+  end
+
+  describe "#actors" do
+    it "returns a list of unique actors for node"
   end
 end
