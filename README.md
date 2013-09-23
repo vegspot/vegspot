@@ -20,6 +20,6 @@ The finest vegan and vegetarian online community.
     
 4. Start the application
 
-        rails s
+        foreman start
     
 5. Go to [http://localhost:3000](http://localhost:3000)
