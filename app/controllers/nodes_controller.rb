@@ -7,28 +7,33 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @nodes = Node
-
-    # Determine mode
-    case params[:mode]
-    when 'recent'
-      @nodes = @nodes.recent
-    else
-      @nodes = @nodes.popular
-    end
+    @nodes = Node.popular
 
     # Determine timed scope
     case params[:for]
       when 'month'
-        @nodes = @nodes.this_month
+        @nodes      = @nodes.this_month
+        @for_filter = 'month'
       when 'all'
-        @nodes = @nodes
+        @nodes      = @nodes
+        @for_filter = 'all'
       else
-        @nodes = @nodes.this_week
+        @nodes      = @nodes.this_week
+        @for_filter = 'week'
     end
 
     # Add pagination
-    @nodes = @nodes.page(params[:page]).per(10)
+    @nodes = @nodes.page(params[:page]).per(36)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @nodes }
+    end
+  end
+
+  def recent
+    @nodes      = Node.recent.page(params[:page]).per(36)
+    @for_filter = 'week'
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,0 +1,28 @@
+.row
+  .col-lg-12.node-list-filters
+    h1.pull-left
+
+      - if mode == 'popular'
+        | Popular stories
+        small
+          = link_to 'Show recent', recent_nodes_path
+
+      - elsif mode == 'recent'
+        | Recent stories
+        small
+          = link_to 'Show popular', root_path
+
+    
+    ul.nav.nav-pills.f-2.pull-right
+      li class="#{'active' if @for_filter == 'week'}"
+        = link_to 'Week', '/'
+
+      - if mode == 'popular'
+        li class="#{'active' if @for_filter == 'month'}"
+          = link_to 'Month', root_path(for: 'month')
+        li class="#{'active' if @for_filter == 'all'}"
+          = link_to 'All time', root_path(for: 'all')
+
+    .clearfix
+
+    hr

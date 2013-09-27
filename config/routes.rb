@@ -13,9 +13,8 @@ Vegspot::Application.routes.draw do
       get 'text', action: 'new', type: 'text'
     end
   end
-
-  get 'recent' => 'nodes#index', as: :recent_nodes, mode: 'recent'
-  get 'readed' => 'nodes#index', as: :readed_nodes, mode: 'readed'
+  
+  get 'recent' => 'nodes#recent', as: :recent_nodes
   get 'saved' => 'nodes#index', as: :saved_nodes, mode: 'saved'
 
   devise_for :users

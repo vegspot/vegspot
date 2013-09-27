@@ -1,7 +1,9 @@
 .col-lg-4.node-single-card
-  = image_tag node.thumbnail.thumb, width: 390, class: 'thumbnail'
+  = link_to node.url, target: '_blank' do
+    = image_tag node.thumbnail.thumb, width: 360, class: ''
+    
   .content
-    h2= node.title
+    h2= link_to node.title, node.url, target: '_blank'
     .body
       p= node.body
 
@@ -9,9 +11,11 @@
     a.btn.btn-default.btn-sm 
       | 321 
       i.icon-leaf
+
     a.btn.btn-default.btn-sm
       i.icon-bookmark>
       | Save
+      
     a.btn.btn-default.btn-sm
       i.icon-mail-forward>
       | Share
