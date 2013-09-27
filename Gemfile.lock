@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/vitobotta/share_counts.git
+  revision: 2e764aee641bd8a4475dc18aef5fcb86347d5260
+  specs:
+    share_counts (0.1.4)
+      json
+      nokogiri
+      redis
+      rest-client
+
+GIT
   remote: git@github.com:petergoldstein/acts_as_commentable_with_threading.git
   revision: 531c957fa423a5107f78104720e845e73a11d92f
   branch: feature/rails_4
@@ -165,7 +175,10 @@ GEM
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
     redcarpet (3.0.0)
+    redis (3.0.4)
     ref (1.0.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rmagick (2.13.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -258,6 +271,7 @@ DEPENDENCIES
   rmagick
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
+  share_counts!
   slim-rails
   sqlite3
   therubyracer

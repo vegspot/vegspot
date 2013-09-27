@@ -1,3 +1,22 @@
+.container#top-stories
+  .row
+    .col-lg-12.node-list-filters
+      ul.nav.nav-tabs
+        li.active: a Popular
+        li: a Recent
+
+      ul.nav.nav-pills
+        li.active = link_to 'Week', '/'
+        li= link_to 'Month', params.merge(for: 'month')
+        li= link_to 'All time', params.merge(for: 'all')
+
+  - @nodes.each.with_index do |node, index|
+    == "#{'<div class=\'row\'>' if (index) % 3 == 0}"
+    = render 'single_card', node: node
+    - if (index+1) % 3 == 0
+      .col-lg-12: hr
+      </div>
+
 .container
   .row
     .col-lg-9

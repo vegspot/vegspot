@@ -1,0 +1,17 @@
+.col-lg-4.node-single-card
+  = image_tag node.thumbnail.thumb, width: 390, class: 'thumbnail'
+  .content
+    h2= node.title
+    .body
+      p= node.body
+
+  .actions
+    a.btn.btn-default.btn-sm 
+      | 321 
+      i.icon-leaf
+    a.btn.btn-default.btn-sm
+      i.icon-bookmark>
+      | Save
+    a.btn.btn-default.btn-sm
+      i.icon-mail-forward>
+      | Share

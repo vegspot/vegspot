@@ -31,6 +31,8 @@ gem 'kaminari'
 
 gem "cancan"
 
+gem 'share_counts', github: 'vitobotta/share_counts'
+
 # Use this repo / branch to make it rails4 compatibile
 gem 'acts_as_commentable_with_threading', git: 'git@github.com:petergoldstein/acts_as_commentable_with_threading.git', branch: 'feature/rails_4'
 
