@@ -20,17 +20,9 @@ html
             .logo
               i.icon-leaf.no-spin
             | vegspot
-        .navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li
-              a href="/lounge"
-                | Poczekalnia
-                sub.text-muted<= "(12)"
-            li
-              a href="/categories" Kategorie
 
           form.navbar-form.pull-left#search-form
-            input type="text" class="form-control" placeholder="Czego dziś szukasz?"
+            input type="text" class="form-control" placeholder="What are you looking for?"
 
           .btn-group.pull-right
             - if user_signed_in?
