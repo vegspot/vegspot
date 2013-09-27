@@ -28,38 +28,6 @@ class Node < ActiveRecord::Base
 
   # methods
 
-  # Fetch URL and look for first image from there.
-  # Than, set it as node thumbnail.
-  #
-  # TODO: This method should be more smart for sure.
-  def fetch_thumbnail
-    return unless self.is_link?
-
-    biggest_image = { url: nil, width: 0 }
-    doc = Nokogiri::HTML open(self.url)
-    
-    doc.css('img').each do |img|
-      image = { size: FastImage.size(img[:src]), type: FastImage.type(img[:src]) }
-
-      if image[:size] != nil && 
-         image[:type] != :gif && 
-         image[:size][0] > biggest_image[:width]
-         
-        biggest_image = { url: img[:src], width: image[:size][0] }
-      end
-    end
-    
-    if biggest_image[:url]
-      self.remote_thumbnail_url = biggest_image[:url]
-      self.save!
-      return true
-    end
-    
-    # Set 'needs_thumb' flag
-    Flag.build_for(self, 'needs_thumb', self.user, 'Thumbnail has not been fetched automatically.').save!
-    return false
-  end
-
   # Update score counter for node.
   def update_score
     self.score = self.plusminus
