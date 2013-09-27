@@ -10,7 +10,8 @@ class Node < ActiveRecord::Base
   acts_as_commentable
 
   # callbacks
-  after_save   :set_site
+  after_save :set_site
+  after_save :refresh_score
 
   # scopes
   scope :popular,    -> { order('score DESC') }
@@ -28,32 +29,14 @@ class Node < ActiveRecord::Base
 
   # methods
 
-  # Update score counter for node.
-  def update_score
-    self.score = self.plusminus
+  # Fetches shares counters using share_counts gem.
+  # When everthing is done, it saves all the scores and sums them up with up votes.
+  def refresh_score
+    shares = ShareCounts.selected self.url, [:facebook, :twitter]
+    self.shares_facebook = shares[:facebook]
+    self.shares_twitter  = shares[:twitter]
+    self.score = self.shares_facebook + self.shares_twitter + self.plusminus
     self.save!
-  end
-
-  # Is node a link?
-  def is_link?
-    self.node_type == 0 || self.node_type == nil
-  end
-
-  # Is node a text?
-  def is_text?
-    self.node_type == 1
-  end
-
-  # Determine if node has flags?
-  def is_flagged?(key = nil)
-    node = self.flags
-    node = node.where(key: key) if key
-    node.length > 0
-  end
-
-  # Returns unique comments for a node
-  def actors
-    Comment.where(commentable: self).group(:user_id)
   end
 
   private

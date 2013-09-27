@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921130845) do
+ActiveRecord::Schema.define(version: 20130927195206) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -61,13 +61,15 @@ ActiveRecord::Schema.define(version: 20130921130845) do
     t.text     "body"
     t.integer  "user_id"
     t.string   "thumbnail"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "url"
     t.integer  "site_id"
-    t.integer  "score",      default: 0
+    t.integer  "score",           default: 0
     t.integer  "node_type"
     t.string   "slug"
+    t.integer  "shares_facebook"
+    t.integer  "shares_twitter"
   end
 
   add_index "nodes", ["slug"], name: "index_nodes_on_slug", unique: true
