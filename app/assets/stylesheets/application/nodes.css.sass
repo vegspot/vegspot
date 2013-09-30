@@ -44,6 +44,19 @@
       margin-right: 5px
       color: #666
 
+  .btn-node-save, .btn-node-share
+    display: none
+
+  .btn-node-save
+    &.saved
+      background: #F0E56A
+      border-color: #F0E56A
+      display: inline
+
+  &:hover
+    .btn-node-save, .btn-node-share
+      display: inline
+
 #saved-nodes-modal
   .modal-body
     h4

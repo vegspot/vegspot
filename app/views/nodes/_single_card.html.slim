@@ -1,24 +1,21 @@
-.col-lg-4.node-single-card
+.col-lg-4.node-single-card id="node-#{node.id}"
   = link_to node.url, target: '_blank' do
     = image_tag node.thumbnail.thumb, width: 360, class: ''
 
   .content
     h2= link_to node.title, node.url, target: '_blank'
-
     = tag_list_formatted node
 
     .body
       p= node.body
 
   .actions
-    a.btn.btn-default.btn-sm 
+    a.btn.btn-default.btn-sm.btn-node-vote-up
       = number_with_delimiter node.score
       i.icon-leaf<
 
-    a.btn.btn-default.btn-sm
-      i.icon-bookmark>
-      | Save
+    = render 'save_button', node: node
       
-    a.btn.btn-default.btn-sm
+    a.btn.btn-default.btn-sm.btn-node-share
       i.icon-mail-forward>
       | Share

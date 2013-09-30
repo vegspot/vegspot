@@ -8,7 +8,8 @@ Vegspot::Application.routes.draw do
     end
 
     member do
-      get 'vote/:vote', action: 'vote', as: :vote_on
+      get  'vote/:vote', action: 'vote', as: :vote_on
+      get  'save'
     end
 
     resources :comments

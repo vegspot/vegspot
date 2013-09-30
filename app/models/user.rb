@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :services, dependent: :destroy
   has_many :nodes
+  has_many :flags
 
   # plugins
   acts_as_voter
@@ -29,5 +30,20 @@ class User < ActiveRecord::Base
   def update_karma_counter
     self.karma_nodes = self.karma
     self.save!
+  end
+
+  # Alias method for setting a flag of type 'save' on node
+  def save(node)
+    flag = self.flags.where(key: 'save', flagged_type: 'Node', flagged_id: node.id).first
+    
+    if flag
+      flag.destroy
+    else
+      Flag.build_for(node, 'save', self).save!
+    end
+  end
+
+  def saved?(node)
+    self.flags.where(key: 'save', flagged_type: 'Node', flagged_id: node.id).first
   end
 end

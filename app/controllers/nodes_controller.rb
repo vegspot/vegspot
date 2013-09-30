@@ -41,6 +41,15 @@ class NodesController < ApplicationController
     end
   end
 
+  # GET /nodes/saved
+  # Displays saved nodes for user
+  def saved
+    @nodes = Node.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /nodes/1
   # GET /nodes/1.json
   def show
@@ -115,10 +124,12 @@ class NodesController < ApplicationController
     end
   end
 
-  # POST /nodes/saved
-  # Displays saved nodes for user
-  def saved
-    @nodes = Node.all
+  # POST /nodes/:id/save
+  # Saves / unsave a node
+  def save
+    @node = Node.find(params[:id])
+    current_user.save(@node)
+
     respond_to do |format|
       format.js
     end

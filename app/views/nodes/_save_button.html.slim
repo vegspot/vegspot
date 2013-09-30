@@ -1,0 +1,3 @@
+= link_to save_node_path(node), remote: true, method: :get, class: "btn-node-save btn btn-default btn-sm #{saved_button_class(node)}" do
+  i.icon-bookmark>
+  = (user_signed_in? && current_user.saved?(node)) ? 'Saved' : 'Save'
