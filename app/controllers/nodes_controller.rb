@@ -32,7 +32,7 @@ class NodesController < ApplicationController
   end
 
   def recent
-    @nodes      = Node.recent.page(params[:page]).per(36)
+    @nodes      = Node.recent.this_week.page(params[:page]).per(36)
     @for_filter = 'week'
 
     respond_to do |format|
