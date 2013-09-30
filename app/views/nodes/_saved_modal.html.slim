@@ -1,11 +1,11 @@
 ul.media-list
-  - @nodes.each do |node|
+  - @nodes.each do |saved|
     li.media
-      = link_to node.url, class: 'pull-left' do
-        = image_tag node.thumbnail.thumb, width: 60
+      = link_to saved.node.url, class: 'pull-left' do
+        = image_tag saved.node.thumbnail.thumb, width: 60
 
       h4.media-heading
-        = link_to truncate(node.title, length: 52), node.url, title: node.title
+        = link_to truncate(saved.node.title, length: 52), saved.node.url, title: saved.node.title
 
       .media-body
-        = tag_list_formatted node
+        = tag_list_formatted saved.node

@@ -43,7 +43,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Checks if there is a flag of type 'save' on given node.
   def saved?(node)
     self.flags.where(key: 'save', flagged_type: 'Node', flagged_id: node.id).first
+  end
+
+  # Gets a list of saved nodes
+  def saved_nodes
+    self.flags.where(key: 'save', flagged_type: 'Node').order('created_at DESC')
   end
 end

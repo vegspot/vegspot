@@ -44,7 +44,7 @@ class NodesController < ApplicationController
   # GET /nodes/saved
   # Displays saved nodes for user
   def saved
-    @nodes = Node.all
+    @nodes = current_user.saved_nodes
     respond_to do |format|
       format.js
     end
