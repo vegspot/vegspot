@@ -24,17 +24,25 @@ html
           form.navbar-form.pull-left#search-form
             input type="text" class="form-control" placeholder="What are you looking for?"
 
-          .btn-group.pull-right
-            - if user_signed_in?
-              a.btn.btn-grey href=new_node_path
-                span.icon-plus>
-                | dodaj
-              a.btn.btn-grey href="/examples/navbar-static-top/"
-                span.icon-bell-alt
-              a.btn.btn-grey href=""
-                img.img-circle alt="" src=current_user.avatar_url width="15"
-            - else
-              a.btn.btn-grey href="/users/auth/facebook" Zaloguj się
+        .btn-group.pull-right
+          - if user_signed_in?
+            a.btn.btn-grey href=new_node_path
+              span.icon-plus>
+              | add a link
+            = link_to saved_nodes_path, remote: true, class: 'btn btn-grey' do
+              span.icon-bookmark
+              | saved
+            a.btn.btn-grey href=""
+              img.img-circle alt="" src=current_user.avatar_url width="15"
+          - else
+            a.btn.btn-grey href="/users/auth/facebook" Sign in
 
 
     = yield
+
+    #saved-nodes-modal.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h3.modal-title Saved stories
+          .modal-body
