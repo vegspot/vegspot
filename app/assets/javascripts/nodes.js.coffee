@@ -11,3 +11,8 @@ $ ->
       node: { url: $('#node_url').val() }
       (data) ->
         $('#node_title').val(data.title)
+
+  # Hide a popover when user's mouse is outside 
+  # node card.
+  # $('.node-single-card').hover {}, ->
+  #   $('.popover').popover('hide')

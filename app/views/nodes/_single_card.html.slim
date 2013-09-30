@@ -15,7 +15,7 @@
       i.icon-leaf<
 
     = render 'save_button', node: node
-      
-    a.btn.btn-default.btn-sm.btn-node-share
-      i.icon-mail-forward>
+    
+    = link_to share_node_path(node), class: 'btn btn-default btn-sm btn-node-share', :'data-container' => 'body', :'data-toggle' => 'popover', :'data-placement' => 'top', :'data-content' => 'Loading...', :'data-title' => 'Share this story', :'data-selector' => "node-#{node.id}", remote: true, method: :get do
+      i.icon-mail-forward
       | Share

@@ -10,6 +10,7 @@ Vegspot::Application.routes.draw do
     member do
       get  'vote/:vote', action: 'vote', as: :vote_on
       get  'save'
+      get  'share'
     end
 
     resources :comments

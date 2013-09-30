@@ -27,3 +27,9 @@ function startSpinner() {
 function stopSpinner() {
 	$('.logo .icon-leaf').removeClass('icon-spin')
 }
+
+$(document).ready(function(){
+  $('.node-single-card').hover(function(){}, function(){
+    $(this).find('.btn-node-share').popover('hide')
+  })
+})

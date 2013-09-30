@@ -135,6 +135,14 @@ class NodesController < ApplicationController
     end
   end
 
+  def share
+    @node = Node.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # Fetch page title of given url
   def fetch_title
     doc = Nokogiri::HTML(open(params[:node][:url]))
