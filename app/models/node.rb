@@ -11,7 +11,7 @@ class Node < ActiveRecord::Base
 
   # callbacks
   after_save :set_site
-  after_save :refresh_score
+  before_save :refresh_score
 
   # scopes
   scope :popular,    -> { order('score DESC') }
@@ -22,8 +22,8 @@ class Node < ActiveRecord::Base
   # validation
   validates :user,      presence: true
   validates :title,     presence: true, length: { minimum: 3 }
-  validates :url,       presence: true, if: :is_link?, format: URI::regexp(%w(http https))
-  validates :body,      presence: true, length: { minimum: 10 }, if: :is_text?
+  validates :url,       presence: true, format: URI::regexp(%w(http https))
+  validates :body,      length: { minimum: 10 }, allow_nil: true
   validates :node_type, presence: true, inclusion: 0..1
   validates :tag_list,  presence: true, length: { maximum: 5 }
 
@@ -36,7 +36,6 @@ class Node < ActiveRecord::Base
     self.shares_facebook = shares[:facebook]
     self.shares_twitter  = shares[:twitter]
     self.score = self.shares_facebook + self.shares_twitter + self.plusminus
-    self.save!
   end
 
   private
@@ -44,7 +43,6 @@ class Node < ActiveRecord::Base
   # Check if site exists in database. If not, create it
   # and assign it to the node. If not, find and assign.
   def set_site
-    return unless self.is_link?
     uri  = URI.parse(self.url)
     uri  = URI.parse("http://#{url}") if uri.scheme.nil?
     host = uri.host.downcase
