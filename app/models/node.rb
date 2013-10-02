@@ -24,7 +24,6 @@ class Node < ActiveRecord::Base
   validates :title,     presence: true, length: { minimum: 3 }
   validates :url,       presence: true, format: URI::regexp(%w(http https))
   validates :body,      length: { minimum: 10 }, allow_nil: true
-  validates :node_type, presence: true, inclusion: 0..1
   validates :tag_list,  presence: true, length: { maximum: 5 }
 
   # methods
@@ -33,9 +32,22 @@ class Node < ActiveRecord::Base
   # When everthing is done, it saves all the scores and sums them up with up votes.
   def refresh_score
     shares = ShareCounts.selected self.url, [:facebook, :twitter]
-    self.shares_facebook = shares[:facebook]
-    self.shares_twitter  = shares[:twitter]
+    self.shares_facebook = ( shares[:facebook] || self.shares_facebook )
+    self.shares_twitter  = ( shares[:twitter]  || self.shares_twitter )
+
     self.score = self.shares_facebook + self.shares_twitter + self.plusminus
+  end
+
+  # Checks if node is flagged with flags of provided key or
+  # with any flags (if key parameter is nil)
+  def is_flagged?(key = nil)
+    flags = self.flags
+
+    if key
+      flags.where(key: key).length > 0
+    else
+      flags.length > 0
+    end
   end
 
   private
@@ -50,4 +62,5 @@ class Node < ActiveRecord::Base
 
     self.site = Site.find_or_create_by(address: host)
   end
+
 end

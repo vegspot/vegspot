@@ -1,6 +1,6 @@
 class Flag < ActiveRecord::Base
   belongs_to :user
-  belongs_to :node, foreign_key: 'flagged_id', class_name: 'Node'
+  belongs_to :flagged, class_name: 'Node'
 
   validates :key, presence: true, inclusion: { in: %w(needs_thumb save) }
   validates :flagged_type, presence: true

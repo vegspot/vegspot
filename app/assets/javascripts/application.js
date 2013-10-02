@@ -29,7 +29,7 @@ function stopSpinner() {
 }
 
 $(document).ready(function(){
-  $('.node-single-card').hover(function(){}, function(){
+  $('.node-single-card').mouseleave(function(){
     $(this).find('.btn-node-share').popover('hide')
   })
 })

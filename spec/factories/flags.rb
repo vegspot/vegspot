@@ -2,24 +2,17 @@
 
 FactoryGirl.define do
   factory :flag do
-    factory :needs_thumb_flag do
-      key          "needs_thumb"
-      flagged_type "Node"
-      description  "Test description"
-      flagged_id   1
+    flagged_type "Node"
+    description  Faker::Lorem.sentence(10)
+    association  :user, factory: :user
+    association :flagged, factory: :node
 
-      association :user, factory: :regular_user_2
-      # No idea why it's not working...
-      # association :flagged_id, factory: :link_node
+    trait :needs_thumb do
+      key "needs_thumb"
     end
 
-    factory :spam_flag do
+    trait :spam do
       key "spam"
-      flagged_type "Node"
-      description "This node is a spam for sure"
-      flagged_id 1
-
-      association :user, factory: :regular_user
     end
   end
 end

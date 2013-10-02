@@ -154,26 +154,14 @@ class NodesController < ApplicationController
   def vote
     @node = Node.find(params[:id])
 
-    # If user is voting for
-    if params[:vote] == 'for'
+    # if user has allready voted, remove his vote.
+    if current_user.voted_for?(@node)
+      current_user.unvote_for(@node)
 
-      # if user has allready voted, remove his vote.
-      if current_user.voted_for?(@node)
-        current_user.unvote_for(@node)
-
-      # or else, delete any existing vote by this user and cast a new FOR one.
-      else
-        current_user.vote_exclusively_for(@node)
-      end
-
-    # Everything in this elsif statement works the oposite way than in if statement. 
-    elsif params[:vote] == 'against'
-      if current_user.voted_against?(@node)
-        current_user.unvote_for(@node)
-      else
-        current_user.vote_exclusively_against(@node)
-      end      
-    end
+    # or else, delete any existing vote by this user and cast a new FOR one.
+    else
+      current_user.vote_exclusively_for(@node)
+    end    
 
     # Update karma counters
     @node.user.update_karma_counter
