@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131002182507) do
+ActiveRecord::Schema.define(version: 20131003065615) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20131002182507) do
     t.string   "url"
     t.integer  "site_id"
     t.integer  "score",           default: 0
-    t.integer  "node_type"
     t.string   "slug"
     t.integer  "shares_facebook", default: 0
     t.integer  "shares_twitter",  default: 0
