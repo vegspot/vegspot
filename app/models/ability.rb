@@ -3,11 +3,11 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    # if user.admin?
-    #   can :manage, :all
-    # else
-    #   can :read, :all
-    # end
+
+    # Admin user
+    if user.is_admin?
+      can :manage, :all
+    end
 
     # Anyone
     can :read, :all
@@ -15,7 +15,7 @@ class Ability
     # Regular logged in user
     if user.persisted?
       can :create, Comment
-      can :manage, Node, user_id: user.id
+      can :create, Node
     end
   end
 end

@@ -2,12 +2,12 @@ class NodesController < ApplicationController
   before_action :get_recent_comments, only: [:index]
   before_action :get_related_nodes, only: [:show]
 
-  #load_and_authorize_resource
+  load_and_authorize_resource
 
   # GET /nodes
   # GET /nodes.json
   def index
-    @nodes = Node.popular
+    @nodes = Node.live.popular
 
     # Determine timed scope
     case params[:for]
@@ -32,7 +32,7 @@ class NodesController < ApplicationController
   end
 
   def recent
-    @nodes      = Node.recent.this_week.page(params[:page]).per(36)
+    @nodes      = Node.live.recent.this_week.page(params[:page]).per(36)
     @for_filter = 'week'
 
     respond_to do |format|
@@ -174,11 +174,10 @@ class NodesController < ApplicationController
 
   private
   def node_params
-    params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :node_type)
-    if params[:node][:node_type] == '0'
-      params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :node_type)
+    if can? :manage, Node
+      params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :status)
     else
-      params.require(:node).permit(:title, :remote_thumbnail_url, :tag_list, :body, :node_type)
+      params.require(:node).permit(:url)
     end
   end
 

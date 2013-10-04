@@ -1,38 +1,64 @@
 require 'spec_helper'
 
 describe Node do
+  before(:each) do
+    @node = FactoryGirl.build(:node)
+  end
+
   it "has a valid factory" do
-    FactoryGirl.build(:node).should be_valid
+    @node.should be_valid
   end
 
   it "is invalid without a title" do
-    FactoryGirl.build(:node, title: nil).should_not be_valid
+    @node.title = nil
+    @node.should_not be_valid
   end
 
-  it "is invalid without a node owner" do
-    FactoryGirl.build(:node, user: nil).should_not be_valid
+  it "is invalid without an owner" do
+    @node.user = nil
+    @node.should_not be_valid
   end
 
   it "is invalid without any tags" do
-    FactoryGirl.build(:node, tag_list: nil).should_not be_valid
+    @node.tag_list = nil
+    @node.should_not be_valid
   end
 
   it "is invalid with more than 5 tags" do
-    FactoryGirl.build(:node, tag_list: 'One, two, three, four, five, six').should_not be_valid
+    @node.tag_list = 'One, two, three, four, five, six'
+    @node.should_not be_valid
   end
 
-  it "is invalid without a node url" do
-    FactoryGirl.build(:node, url: nil).should_not be_valid
+  it "is invalid without an url" do
+    @node.url = nil
+    @node.should_not be_valid
   end
 
   it "is invalid with wrong formatted url" do
-    FactoryGirl.build(:node, url: "domain.com").should_not be_valid
-    FactoryGirl.build(:node, url: "domain.").should_not be_valid
-    FactoryGirl.build(:node, url: "domain").should_not be_valid
+    @node.url = 'domain.com'
+    @node.should_not be_valid
+
+    @node.url = 'domain.'
+    @node.should_not be_valid
+
+    @node.url = 'domain'
+    @node.should_not be_valid
+  end
+
+  it "is setting a status to 'pending' by default" do
+    @node.status = nil
+    @node.should be_valid
+    @node.status.should eq 'pending'
+  end
+
+  it "is invalid with wrong status" do
+    @node.status = 'wrong_status'
+    @node.should_not be_valid
   end
 
   it "is valid without a node body" do
-    FactoryGirl.build(:node, body: nil).should be_valid
+    @node.body = nil
+    @node.should be_valid
   end
 
   # Methods

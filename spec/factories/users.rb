@@ -1,9 +1,13 @@
 require 'faker'
 
 FactoryGirl.define do
+  sequence :email do |n|
+    "user#{n}@example.com"
+  end
+
   factory :user do
     password "SamplePassword"
-    sequence(:email) { |n| "person#{n}@example.com" }
+    email
 
     trait :admin do
       is_admin true

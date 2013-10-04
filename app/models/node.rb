@@ -10,10 +10,12 @@ class Node < ActiveRecord::Base
   acts_as_commentable
 
   # callbacks
-  after_save :set_site
+  after_save  :set_site
   before_save :refresh_score
+  before_validation :default_values
 
   # scopes
+  scope :live,       -> { where('status = ?', 'live') }
   scope :popular,    -> { order('score DESC') }
   scope :recent,     -> { order('created_at DESC') }
   scope :this_week,  -> { where('created_at >= ?', Date.today - 1.week) }
@@ -25,6 +27,7 @@ class Node < ActiveRecord::Base
   validates :url,       presence: true, format: URI::regexp(%w(http https))
   validates :body,      length: { minimum: 10 }, allow_nil: true
   validates :tag_list,  presence: true, length: { maximum: 5 }
+  validates :status,    presence: true, inclusion: { in: %w(pending live) }
 
   # methods
 
@@ -48,6 +51,11 @@ class Node < ActiveRecord::Base
     else
       flags.length > 0
     end
+  end
+
+  # Set default values
+  def default_values
+    self.status ||= 'pending'
   end
 
   private
