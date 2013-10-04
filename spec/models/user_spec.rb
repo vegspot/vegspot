@@ -2,18 +2,23 @@ require 'spec_helper'
 require "cancan/matchers"
 
 describe User do
+  let(:user) { FactoryGirl.build(:user) }
+
   it "has a valid factory" do
-    FactoryGirl.build(:user).should be_valid
+    expect(user).to be_valid
   end
 
   it "is invalid with wrong email" do
-    FactoryGirl.build(:user, email: 'regular').should_not be_valid
-    FactoryGirl.build(:user, email: 'regular@vegspot').should_not be_valid
+    user.email = 'regular'
+    expect(user).to be_invalid
+
+    user.email = 'regular@vegspot'
+    expect(user).to be_invalid
   end
 
   describe "abilities" do
-    subject(:ability){ Ability.new(user) }
-    let(:user){ nil }
+    subject(:ability) { Ability.new(user) }
+    let(:user) { nil }
 
     context "when is admin" do
       let(:user){ FactoryGirl.build(:user, :admin) }
@@ -34,16 +39,6 @@ describe User do
         @node = FactoryGirl.build(:node)
         should_not be_able_to(:create, @node) 
       end
-    end
-  end
-
-  describe "#is_admin?" do
-    it "returns true if user is admin" do
-      FactoryGirl.build(:user, :admin).is_admin?.should eq(true)
-    end
-
-    it "returns false if user is not an admin" do
-      FactoryGirl.build(:user).is_admin?.should eq(false)
     end
   end
 end
