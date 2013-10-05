@@ -28,17 +28,11 @@ describe User do
     end
 
     context "when is a regular user" do
-      let(:user){ FactoryGirl.build(:user) }
+      let(:user){ FactoryGirl.create(:user) }
+      let(:node){ FactoryGirl.build(:node) }
 
-      it "is able to create a new node" do
-        node = Node.new
-        should be_able_to(:create, Node.new)
-      end
-
-      it "is not able to edit existing node" do
-        @node = FactoryGirl.build(:node)
-        should_not be_able_to(:create, @node) 
-      end
+      it { should be_able_to(:create, node) }
+      it { should_not be_able_to(:update, node) }
     end
   end
 end
