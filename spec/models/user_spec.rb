@@ -25,6 +25,7 @@ describe User do
 
       it { should be_able_to(:create, Node.new) }
       it { should be_able_to(:edit, Node.first) }
+      it { should be_able_to(:update, Node.first) }
     end
 
     context "when is a regular user" do
@@ -33,6 +34,7 @@ describe User do
 
       it { should be_able_to(:create, node) }
       it { should_not be_able_to(:update, node) }
+      it { should_not be_able_to(:edit, node) }
     end
   end
 end
