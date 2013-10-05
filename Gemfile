@@ -39,8 +39,8 @@ gem 'acts_as_commentable_with_threading', git: 'git@github.com:petergoldstein/ac
 # Markdown support
 gem 'redcarpet'
 
-# Easy remote image info (size and dimension)
-gem 'fastimage'
+# sheduled tasks / cron replacement
+gem 'clockwork'
 
 # Gems used only for assets and not required
 # in production environments by default.
