@@ -22,9 +22,10 @@
         | Share
 
       ul.dropdown-menu role="menu" aria-labelledby="dlabel"
-        li: a
+        li: a.twitter.twitter-share-button href="https://twitter.com/share?url=#{node.url}&text=#{node.title}"
           i.icon-twitter-sign>
           | Tweet this
-        li: a 
+
+        li: a.facebook href=node.url
           i.icon-facebook-sign>
           | Share to facebook
