@@ -175,7 +175,7 @@ class NodesController < ApplicationController
   private
   def node_params
     if can? :manage, Node
-      params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :status)
+      params.require(:node).permit(:url, :title, :body, :remote_thumbnail_url, :tag_list, :status, :node_type)
     else
       params.require(:node).permit(:url)
     end
