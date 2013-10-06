@@ -15,7 +15,12 @@
       i.icon-leaf<
 
     = render 'save_button', node: node
-    
-    = link_to share_node_path(node), class: 'btn btn-default btn-sm btn-node-share', :'data-toggle' => 'popover', :'data-placement' => 'top', :'data-content' => 'Loading...', :'data-title' => 'Share this story', remote: true, method: :get do
-      i.icon-mail-forward>
-      | Share
+
+    .dropdown.node-share.dropup
+      a.btn.btn-default.btn-sm.btn-node-share data-toggle="dropdown" href="#"
+        i.icon-mail-forward>
+        | Share
+        
+      ul.dropdown-menu role="menu" aria-labelledby="dlabel"
+        li: a Tweet this
+        li: a Share to facebook
