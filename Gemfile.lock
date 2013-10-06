@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/blischalk/cancan.git
+  revision: ae93410ecbb75bb662491841dee82a52a1eba476
+  branch: ForbiddenAttributes
+  specs:
+    cancan (1.6.10)
+
+GIT
   remote: git://github.com/vitobotta/share_counts.git
   revision: 2e764aee641bd8a4475dc18aef5fcb86347d5260
   specs:
@@ -53,7 +60,6 @@ GEM
       activerecord (>= 3.0.0)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
-    cancan (1.6.10)
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -253,7 +259,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   acts_as_commentable_with_threading!
-  cancan
+  cancan!
   capybara
   carrierwave
   clockwork

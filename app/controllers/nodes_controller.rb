@@ -2,7 +2,7 @@ class NodesController < ApplicationController
   before_action :get_recent_comments, only: [:index]
   before_action :get_related_nodes, only: [:show]
 
-  load_and_authorize_resource
+  #load_and_authorize_resource
 
   # GET /nodes
   # GET /nodes.json

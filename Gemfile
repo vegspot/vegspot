@@ -29,7 +29,9 @@ gem 'thumbs_up'
 # pagination
 gem 'kaminari'
 
-gem "cancan"
+# I'm temporary changing cancan gem source to blischalk's source
+# to make it working well on rails4
+gem "cancan", github: 'blischalk/cancan', branch: 'ForbiddenAttributes'
 
 gem 'share_counts', github: 'vitobotta/share_counts'
 
