@@ -30,7 +30,6 @@ function stopSpinner() {
 
 $(document).ready(function(){
   $('.node-single-card').mouseleave(function(){
-    $(this).find('.btn-node-share').popover('hide')
-    console.log('Hide popover')
+    $('[data-toggle="dropdown"]').parent().removeClass('open');
   })
 })

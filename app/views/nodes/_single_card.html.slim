@@ -10,7 +10,7 @@
       p= node.body
 
   .actions
-    a.btn.btn-default.btn-sm.btn-node-vote-up
+    a.btn.btn-default.btn-sm.btn-node-score
       = number_with_delimiter node.score
       i.icon-leaf<
 
@@ -20,7 +20,11 @@
       a.btn.btn-default.btn-sm.btn-node-share data-toggle="dropdown" href="#"
         i.icon-mail-forward>
         | Share
-        
+
       ul.dropdown-menu role="menu" aria-labelledby="dlabel"
-        li: a Tweet this
-        li: a Share to facebook
+        li: a
+          i.icon-twitter-sign>
+          | Tweet this
+        li: a 
+          i.icon-facebook-sign>
+          | Share to facebook
