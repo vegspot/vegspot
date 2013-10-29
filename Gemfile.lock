@@ -217,6 +217,10 @@ GEM
       railties (>= 3.0, < 4.1)
       slim (~> 2.0)
     slop (3.4.6)
+    spork (1.0.0rc4)
+    spork-rails (4.0.0)
+      rails (>= 3.0.0, < 5)
+      spork (>= 1.0rc0)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -281,6 +285,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   share_counts!
   slim-rails
+  spork-rails
   sqlite3
   therubyracer
   thumbs_up

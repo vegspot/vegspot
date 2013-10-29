@@ -24,12 +24,18 @@
 
     hr
       margin-top: 0
+      margin-bottom: 0
 
-.node-single-card
-  h2
+.node-list-single
+  position: relative
+  border-bottom: 1px dotted #DDD
+  padding-bottom: 12px
+
+  h3
     font-size: 22px
-    font-weight: 700
+    font-weight: 300
     margin-bottom: 5px
+    margin-top: 5px
 
   .body
     p
@@ -39,18 +45,23 @@
     min-height: 210px
 
   .actions
-    .btn-node-save, .btn-node-share, .btn-node-score
+    position: absolute
+    top: 5px
+    right: 0
+    font-size: 1.3em
+
+    a
       background: none
       margin-right: 5px
-      color: #666
+      color: #999
 
-    .node-share
-      display: inline
+    // li.share a
+    //   display: inline
 
-  .btn-node-save, .btn-node-share
+  li.save a, li.share a
     display: none
 
-  .btn-node-save
+  li.save a
     padding-left: 8px
 
     &.saved
@@ -60,7 +71,7 @@
       color: #D1C320
 
   &:hover
-    .btn-node-save, .btn-node-share
+    li.save a, li.share a
       display: inline
 
 #saved-nodes-modal

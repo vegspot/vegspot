@@ -82,4 +82,5 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'spork-rails'
 end

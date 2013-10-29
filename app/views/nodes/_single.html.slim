@@ -1,0 +1,18 @@
+.media.node-list-single id="node-#{node.id}"
+  .pull-left
+    = link_to node.url, target: '_blank' do
+      = image_tag node.thumbnail.thumb, width: 100, class: ''
+
+  .media-body
+    h3= link_to node.title, node.url, target: '_blank'
+    p.meta 
+      | #{time_ago_in_words node.created_at} ago by #{node.user} 
+      | &#8226; 
+      = link_to 'discuss', node
+    = tag_list_formatted node
+
+    / Node actions
+    ul.list-inline.actions
+      li.save = render 'save_button', node: node
+      li.share: a
+        i.icon-mail-forward
