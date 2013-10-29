@@ -8,7 +8,7 @@ Vegspot::Application.routes.draw do
     end
 
     member do
-      get  'vote'
+      get 'vote/:vote', action: 'vote', as: :vote_on
       get  'save'
       get  'share'
     end

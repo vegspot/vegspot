@@ -1,5 +1,7 @@
 .media.node-list-single id="node-#{node.id}"
   .pull-left
+    = render 'score', node: node
+    
     = link_to node.url, target: '_blank' do
       = image_tag node.thumbnail.thumb, width: 100, class: ''
 
