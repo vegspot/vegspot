@@ -32,4 +32,6 @@ $(document).ready(function(){
   $('.node-single-card').mouseleave(function(){
     $('[data-toggle="dropdown"]').parent().removeClass('open');
   })
+
+  $('[rel=tooltip]').tooltip()
 })

@@ -1,33 +1,51 @@
 .container.nodes-show
-  .row
-    .col-lg-9
-      .panel.panel-default.nodes-list
+  #content.col-lg-10
+    .nodes-list
 
-        / Display node info + body
-        = render 'single', node: @node, mode: 'full'
+      / Display node info + body
+      = render 'single', node: @node, mode: 'full'
 
-        / Dislay comments list
-        .panel-body
-          - if @node.comment_threads.any?
-            - @node.root_comments.each do |comment|
-              .media.comment
-                = render 'score', node: @node
-                .media-body
-                  .media
-                    a.pull-left.avatar
-                      = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
-                    .media-body
-                      .author
-                        strong= comment.user
-                        small.text-muted.pull-right= timeago_tag comment.created_at
-                      .content
-                        = comment.body
+      / Dislay comments list
+      #comments
+        - if @node.comment_threads.any?
+          - @node.root_comments.each do |comment|
+            .media.comment
+              = render 'score', node: @node
+              .media-body
+                .media
+                  a.pull-left.avatar
+                    = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
+                  .media-body
+                    .author
+                      strong= comment.user
+                      small.text-muted.pull-right= timeago_tag comment.created_at
+                    .content
+                      = comment.body
 
-            hr
+          hr
 
-          / Display comments form
-          = render 'comments/form' if can? :create, @comment
+        / Display comments form
+        = render 'comments/form' if can? :create, @comment
 
-    .col-lg-3
-      = render 'shared/sidebar/author'
-      = render 'shared/sidebar/related_nodes'
+  #sidebar.col-lg-2
+    .sidebar-widget-tags
+      h4.sidebar-widget-title Tagged
+      ul.list-unstyled
+        - @node.tag_counts.each do |tag|
+          li
+            a.btn.btn-default.btn-grey href="#"
+              | ##{tag.name.downcase}
+            span.text-muted< &times; #{tag.count}
+
+      .clearfix
+      dl.dl-horizontal
+        dt posted
+        dd 
+          = time_ago_in_words @node.created_at
+          |  ago
+
+        dt viewed
+        dd 51 times
+
+        dt active
+        dd today

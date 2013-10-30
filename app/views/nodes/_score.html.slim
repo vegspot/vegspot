@@ -3,7 +3,7 @@
   = link_to vote_on_node_path(node, 'for'), remote: true, method: :get, class: 'vote-up' do
     i.icon-chevron-up
 
-  span.score title="#{number_with_delimiter(node.score)} overall / 900 facebook shares / 97 tweets"
+  span.score rel="tooltip" data-placement="right" data-delay="500" title="#{number_with_delimiter(node.score)} overall / 31 karma / 900 facebook shares / 97 tweets"
     = number_to_human node.score, precision: 2, units: { thousand: 'k' }, format: '%n%u'
 
   = link_to vote_on_node_path(node, 'against'), remote: true, method: :get, class: 'vote-down' do
