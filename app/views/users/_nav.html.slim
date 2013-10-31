@@ -1,0 +1,18 @@
+ul.list-group
+  li.list-group-item class="#{'active' if page == 'nodes'}"
+    = link_to @user do
+      | Stories
+      sub = @user.nodes.length
+
+  li.list-group-item class="#{'active' if page == 'comments'}" 
+    = link_to user_comments_path(@user) do
+      | Comments
+      sub = @user.comments.length
+
+  li.list-group-item: a 
+    | Badges
+    sub 8
+
+  li.list-group-item: a 
+    | Saved
+    sub 20

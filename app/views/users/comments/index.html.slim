@@ -1,4 +1,4 @@
-#main.container.nodes-list
+#main.container.comments-list
   .row
     .col-lg-10
       .row
@@ -11,11 +11,12 @@
           .clearfix
           hr
 
-      = render 'nodes/list', nodes: @nodes
+      .row
+        = render 'comments/list', comments: @comments
 
     #sidebar.col-lg-2
       .sidebar-widget-user-menu
         .panel.panel-default
           = image_tag avatar_url(@user, 163), size: '163x163'
 
-          = render 'users/nav', page: 'nodes'
+          = render 'users/nav', page: 'comments'

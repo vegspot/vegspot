@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :services, dependent: :destroy
   has_many :nodes
   has_many :flags
+  has_many :comments
 
   # plugins
   acts_as_voter
