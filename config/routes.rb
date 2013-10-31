@@ -9,14 +9,16 @@ Vegspot::Application.routes.draw do
 
     member do
       get 'vote/:vote', action: 'vote', as: :vote_on
-      get  'save'
-      get  'share'
+      get 'save'
+      get 'share'
     end
 
     resources :comments
   end
 
-  resources :users
+  resources :users do
+    resources :nodes, path: :stories, only: [:index]
+  end
 
   devise_for :users
 

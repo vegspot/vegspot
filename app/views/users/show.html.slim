@@ -5,10 +5,8 @@
         h1.pull-left.page-title
           = @user
           small @mbajur
+        = render 'users/nodes/filter'
 
-        ul.nav.nav-pills.f-2.pull-right
-          li.active: a Recent
-          li: a Popular
         .clearfix
         hr
 
@@ -17,7 +15,7 @@
   #sidebar.col-lg-2
     .sidebar-widget-user-menu
       .panel.panel-default
-        = image_tag avatar_url(@user, 158)
+        = image_tag avatar_url(@user, 158), size: '158x158'
 
         ul.list-group
           li.list-group-item.active: a 
