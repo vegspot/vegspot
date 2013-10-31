@@ -1,6 +1,6 @@
 .media.node-list-single id="node-#{node.id}"
   .pull-left
-    = render 'score', node: node
+    = render 'nodes/score', node: node
 
     = link_to node.url, target: '_blank' do
       = image_tag node.thumbnail.thumb, width: 100, class: ''
@@ -8,7 +8,8 @@
   .media-body
     h3= link_to node.title, node.url, target: '_blank'
     p.meta 
-      | #{time_ago_in_words node.created_at} ago by #{node.user} 
+      | #{time_ago_in_words node.created_at} ago by 
+      = link_to node.user, node.user
       | &#8226; 
 
       - if node.root_comments.length > 0
@@ -20,6 +21,6 @@
 
     / Node actions
     ul.list-inline.actions
-      li.save = render 'save_button', node: node
+      li.save = render 'nodes/save_button', node: node
       li.share: a title="Share this story"
         i.icon-retweet
