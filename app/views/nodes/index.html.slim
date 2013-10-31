@@ -1,7 +1,7 @@
 #main.container.nodes-list
   .row
     .col-lg-10
-      = render 'list_heading', mode: 'popular'
+      = render 'list_heading', mode: @mode
       = render 'list', nodes: @nodes
 
     #sidebar.col-lg-2

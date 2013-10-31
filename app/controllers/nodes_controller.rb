@@ -8,6 +8,7 @@ class NodesController < ApplicationController
   # GET /nodes.json
   def index
     @nodes = Node.live.popular
+    @mode  = 'popular'
 
     # Determine timed scope
     case params[:for]
@@ -34,11 +35,9 @@ class NodesController < ApplicationController
   def recent
     @nodes      = Node.live.recent.this_week.page(params[:page]).per(36)
     @for_filter = 'week'
+    @mode       = 'recent'
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @nodes }
-    end
+    render :index
   end
 
   # GET /nodes/saved
