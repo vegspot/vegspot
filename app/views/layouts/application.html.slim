@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		title Vegspot - the frontpage of vegan*ism
+		title beanly.be - the frontpage of vegan*ism
 		= stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
@@ -20,8 +20,8 @@ html
             | beanly
 
           ul.nav.navbar-nav
-            li: a Stories
-            li: a Comments
+            li = link_to 'Stories', root_path
+            li = link_to 'Comments', comments_path
             li: a Tags
             li: a Badges
             li: a Users

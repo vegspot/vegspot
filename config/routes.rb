@@ -20,6 +20,8 @@ Vegspot::Application.routes.draw do
     resources :nodes, path: :stories, only: [:index]
   end
 
+  resources :comments
+
   devise_for :users
 
   get '/users/auth/:service/callback' => 'services#create'

@@ -1,0 +1,25 @@
+- comments.each.with_index do |comment, index|
+  - if index % 4 == 0
+    .clearfix
+
+  .col-lg-3.comment
+    .media
+      a.pull-left
+        = image_tag avatar_url(comment.user, 35)
+
+      .media-body
+        .pull-right
+          | 12k
+
+        = link_to comment.user, user_path(comment.user)
+        small.text-muted
+          time.timeago 
+            = time_ago_in_words comment.created_at
+            |  ago
+
+    .comment-body
+      p
+        em= comment.body
+        span.on-what
+          |  &ndash; on 
+          = link_to comment.commentable.title, comment.commentable
