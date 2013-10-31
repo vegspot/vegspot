@@ -2,6 +2,28 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
+    @mode     = 'popular'
+
+    # Determine timed scope
+    case params[:for]
+      when 'month'
+        @comments   = @comments.this_month
+        @for_filter = 'month'
+      when 'all'
+        @comments   = @comments
+        @for_filter = 'all'
+      else
+        @comments   = @comments.this_week
+        @for_filter = 'week'
+    end
+  end
+
+  def recent
+    @comments   = Comment.recent.this_week.page(params[:page]).per(36)
+    @for_filter = 'week'
+    @mode       = 'recent'
+
+    render :index
   end
 
   def create

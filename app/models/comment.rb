@@ -13,6 +13,12 @@ class Comment < ActiveRecord::Base
   # NOTE: Comments belong to a user
   belongs_to :user
 
+  # Scopes
+  # scope :popular,    -> { order('score DESC') }
+  scope :recent,     -> { order('created_at DESC') }
+  scope :this_week,  -> { where('created_at >= ?', Date.today - 1.week) }
+  scope :this_month, -> { where('created_at >= ?', Date.today - 1.month) }
+
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
   # example in readme

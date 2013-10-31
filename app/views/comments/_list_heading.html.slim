@@ -1,27 +1,27 @@
 .row
-  .col-lg-12.list-heading
+  .col-lg-12.list-heading.comments-list-filters
     h1.pull-left.page-title
 
       - if mode == 'popular'
-        | Popular stories
+        | Popular comments
         small
-          = link_to 'Show recent', recent_nodes_path
+          = link_to 'Show recent', recent_comments_path
 
       - elsif mode == 'recent'
-        | Recent stories
+        | Recent comments
         small
-          = link_to 'Show popular', root_path
+          = link_to 'Show popular', comments_path
 
     
     ul.nav.nav-pills.f-2.pull-right
       li class="#{'active' if @for_filter == 'week'}"
-        = link_to 'Week', '/'
+        = link_to 'Week', comments_path
 
       - if mode == 'popular'
         li class="#{'active' if @for_filter == 'month'}"
-          = link_to 'Month', root_path(for: 'month')
+          = link_to 'Month', comments_path(for: 'month')
         li class="#{'active' if @for_filter == 'all'}"
-          = link_to 'All time', root_path(for: 'all')
+          = link_to 'All time', comments_path(for: 'all')
 
     .clearfix
 

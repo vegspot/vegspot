@@ -1,16 +1,17 @@
 #main.container.nodes-list
-  .col-lg-10
-    = render 'list_heading', mode: 'popular'
-    = render 'list', nodes: @nodes
+  .row
+    .col-lg-10
+      = render 'list_heading', mode: 'popular'
+      = render 'list', nodes: @nodes
 
-  #sidebar.col-lg-2
+    #sidebar.col-lg-2
 
-    .sidebar-widget-tags
-      h4.sidebar-widget-title Popular tags
+      .sidebar-widget-tags
+        h4.sidebar-widget-title Popular tags
 
-      ul.list-unstyled
-        - Node.tag_counts.each do |tag|
-          li
-            a.btn.btn-default.btn-grey href="#"
-              | ##{tag.name.downcase}
-            span.text-muted< &times; #{tag.count}
+        ul.list-unstyled
+          - Node.tag_counts.each do |tag|
+            li
+              a.btn.btn-default.btn-grey href="#"
+                | ##{tag.name.downcase}
+              span.text-muted< &times; #{tag.count}

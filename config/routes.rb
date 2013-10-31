@@ -3,8 +3,8 @@ Vegspot::Application.routes.draw do
   resources :nodes do
     collection do
       post 'fetch_title'
-      get  'saved'
       get  'recent'
+      get  'saved'
     end
 
     member do
@@ -20,7 +20,11 @@ Vegspot::Application.routes.draw do
     resources :nodes, path: :stories, only: [:index]
   end
 
-  resources :comments
+  resources :comments do
+    collection do
+      get 'recent'
+    end
+  end
 
   devise_for :users
 
