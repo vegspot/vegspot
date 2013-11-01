@@ -3,4 +3,4 @@ ul.nav.nav-pills.f-2.pull-right
     = link_to 'Recent', url_for
 
   li class="#{'active' if @filter == 'popular'}"
-    = link_to 'Popular', "#{url_for}?sort=popular"
+    = link_to 'Popular', url_for(sort: 'popular')
