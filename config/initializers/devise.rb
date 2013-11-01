@@ -184,6 +184,8 @@ Devise.setup do |config|
   # Require the `devise-encryptable` gem when using anything other than bcrypt
   # config.encryptor = :sha512
 
+  config.secret_key = '7e7bea64cf0cd6b7a7b9867864bb249291fff45b382fcfb980d920cefefb85564e3191bf18fc1246518837fc7a80fbc15a616ed968f851f5f958b9cede35b108'
+
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
   # config.token_authentication_key = :auth_token
