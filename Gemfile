@@ -44,6 +44,9 @@ gem 'redcarpet'
 # sheduled tasks / cron replacement
 gem 'clockwork'
 
+# Elasticsearch
+gem 'tire'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

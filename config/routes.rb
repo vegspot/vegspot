@@ -27,6 +27,8 @@ Vegspot::Application.routes.draw do
     end
   end
 
+  resources :search, controller: 'search'
+
   devise_for :users
 
   get '/users/auth/:service/callback' => 'services#create'

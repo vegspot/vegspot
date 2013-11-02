@@ -54,6 +54,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
+    ansi (1.4.3)
     arel (4.0.1)
     atomic (1.1.14)
     awesome_nested_set (2.1.6)
@@ -113,6 +114,7 @@ GEM
       guard (>= 2.1.1)
       rspec (~> 2.14)
     hashie (2.0.5)
+    hashr (0.0.22)
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.5)
@@ -247,6 +249,14 @@ GEM
       statistics2
     tilt (1.4.1)
     timers (1.1.0)
+    tire (0.6.1)
+      activemodel (>= 3.0)
+      activesupport
+      ansi
+      hashr (~> 0.0.19)
+      multi_json (~> 1.3)
+      rake
+      rest-client (~> 1.6)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -293,5 +303,6 @@ DEPENDENCIES
   sqlite3
   therubyracer
   thumbs_up
+  tire
   turbolinks
   uglifier (>= 1.3.0)
