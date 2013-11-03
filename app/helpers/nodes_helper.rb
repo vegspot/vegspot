@@ -16,7 +16,7 @@ module NodesHelper
   # 'saved' class.
   def saved_button_class(node)
     return  if !user_signed_in?
-    'saved' if current_user.saved?(node)
+    'saved' if current_user.flagged?(node)
   end
 
 end

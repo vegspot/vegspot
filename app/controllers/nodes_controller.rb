@@ -127,7 +127,13 @@ class NodesController < ApplicationController
   # Saves / unsave a node
   def save
     @node = Node.find(params[:id])
-    current_user.save(@node)
+    
+    # Toggle `save` flag
+    if current_user.flagged?(@node)
+      current_user.unflag(@node)
+    else
+      current_user.flag(@node)
+    end
 
     respond_to do |format|
       format.js

@@ -7,6 +7,7 @@ class Node < ActiveRecord::Base
   mount_uploader :thumbnail, ThumbnailUploader
   acts_as_voteable
   acts_as_commentable
+  make_flaggable
 
   # callbacks
   after_save  :set_site

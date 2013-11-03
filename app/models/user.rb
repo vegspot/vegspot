@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   # plugins
   acts_as_voter
   has_karma :nodes, :as => :user, weight: [1,1]
+  make_flagger
 
   def to_s
     self.display_name
