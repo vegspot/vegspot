@@ -1,0 +1,21 @@
+#main.container.nodes-list
+  .row
+    .col-lg-10
+      .row
+        .col-lg-12.list-heading
+          h1.pull-left.page-title
+            = @user
+            small @mbajur
+          = render 'users/nodes/filter'
+
+          .clearfix
+          hr
+
+      = render 'nodes/list', nodes: @nodes
+
+    #sidebar.col-lg-2
+      .sidebar-widget-user-menu
+        .panel.panel-default
+          = image_tag avatar_url(@user, 163), size: '163x163'
+
+          = render 'users/nav', page: 'saves'

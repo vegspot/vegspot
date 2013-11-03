@@ -21,6 +21,7 @@ Vegspot::Application.routes.draw do
   resources :users do
     resources :nodes, path: :stories, only: [:index]
     resources :comments, controller: 'user_comments'
+    get 'saves'
   end
 
   resources :comments do

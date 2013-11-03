@@ -13,6 +13,7 @@ ul.list-group
     | Badges
     sub 8
 
-  li.list-group-item: a 
-    | Saved
-    sub 20
+  li.list-group-item class="#{'active' if page == 'saves'}"
+    = link_to user_saves_path(@user) do
+      | Saved
+      sub = @user.flaggings(Node).length

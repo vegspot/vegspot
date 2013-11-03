@@ -14,4 +14,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def saves
+    @user  = User.find(params[:user_id])
+    @nodes = @user.flaggings(Node).map { |f| f.flaggable }
+  end
+
 end
