@@ -16,6 +16,8 @@ Vegspot::Application.routes.draw do
     resources :comments
   end
 
+  devise_for :users
+
   resources :users do
     resources :nodes, path: :stories, only: [:index]
     resources :comments, controller: 'user_comments'
@@ -26,8 +28,6 @@ Vegspot::Application.routes.draw do
       get 'recent'
     end
   end
-
-  devise_for :users
 
   get '/users/auth/:service/callback' => 'services#create'
   resources :services, :only => [:index, :create, :destroy]
