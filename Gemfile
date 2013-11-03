@@ -44,6 +44,9 @@ gem 'redcarpet'
 # sheduled tasks / cron replacement
 gem 'clockwork'
 
+# Flagging
+gem 'make_flaggable', github: 'medihack/make_flaggable'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

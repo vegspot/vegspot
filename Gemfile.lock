@@ -6,6 +6,13 @@ GIT
     cancan (1.6.10)
 
 GIT
+  remote: git://github.com/medihack/make_flaggable.git
+  revision: adc8e93d56032db94d5a03d8d637ca8e16034ab1
+  specs:
+    make_flaggable (0.0.3)
+      activerecord (>= 3.0, <= 4.0)
+
+GIT
   remote: git://github.com/vitobotta/share_counts.git
   revision: 2e764aee641bd8a4475dc18aef5fcb86347d5260
   specs:
@@ -278,6 +285,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   kaminari
+  make_flaggable!
   nokogiri
   omniauth
   omniauth-facebook
