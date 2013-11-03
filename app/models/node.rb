@@ -1,7 +1,6 @@
 class Node < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
-  has_many   :flags, foreign_key: 'flagged_id', dependent: :destroy
 
   # plugins
   acts_as_taggable
@@ -39,18 +38,6 @@ class Node < ActiveRecord::Base
     self.shares_twitter  = ( shares[:twitter]  || self.shares_twitter )
 
     self.score = self.shares_facebook + self.shares_twitter + self.plusminus
-  end
-
-  # Checks if node is flagged with flags of provided key or
-  # with any flags (if key parameter is nil)
-  def is_flagged?(key = nil)
-    flags = self.flags
-
-    if key
-      flags.where(key: key).length > 0
-    else
-      flags.length > 0
-    end
   end
 
   # Set default values
