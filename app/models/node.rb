@@ -25,7 +25,7 @@ class Node < ActiveRecord::Base
   validates :user,      presence: true
   validates :title,     presence: true, length: { minimum: 3 }
   validates :url,       presence: true, format: URI::regexp(%w(http https))
-  validates :body,      length: { minimum: 10 }, allow_nil: true
+  validates :body,      length: { minimum: 10 }, allow_blank: true
   validates :tag_list,  presence: true, length: { maximum: 5 }
   validates :status,    presence: true, inclusion: { in: %w(pending live) }
 
