@@ -47,6 +47,9 @@ gem 'clockwork'
 # Flagging
 gem 'make_flaggable', github: 'medihack/make_flaggable'
 
+# Fetching remote image params - fast way
+gem 'fastimage'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

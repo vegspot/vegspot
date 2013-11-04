@@ -46,6 +46,14 @@ class Node < ActiveRecord::Base
     self.status ||= 'live'
   end
 
+  def scrap_thumbnail
+    return if self.url.nil?
+
+    thumbnail = Media::ThumbnailScrapper.new.scrap(self.url)
+    self.remote_thumbnail_url = thumbnail if thumbnail
+    self.save
+  end
+
   private
 
   # Check if site exists in database. If not, create it
