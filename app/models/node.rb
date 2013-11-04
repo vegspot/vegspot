@@ -43,7 +43,7 @@ class Node < ActiveRecord::Base
 
   # Set default values
   def default_values
-    self.status ||= 'pending'
+    self.status ||= 'live'
   end
 
   private
