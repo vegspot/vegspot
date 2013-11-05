@@ -26,8 +26,8 @@ html
             li: a Badges
             li: a Users
 
-          form.navbar-form.pull-left#search-form
-            input type="text" class="form-control" placeholder="What are you looking for today?" autofocus="true"
+          form.navbar-form.pull-left#search-form action=search_path
+            input type="text" name="q" class="form-control" value=params[:q] placeholder="What are you looking for today?" autofocus="true"
 
         .btn-group.pull-right
           - if user_signed_in?

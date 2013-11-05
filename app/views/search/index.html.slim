@@ -1,0 +1,17 @@
+#main.container.nodes-list
+  .row
+    .col-lg-10
+      .row
+        .col-lg-12.list-heading
+          h1.page-title 
+            | Search results
+            small = pluralize @nodes.length, 'hit'
+          .clearfix
+
+          hr
+      = render 'nodes/list', nodes: @nodes
+
+    #sidebar.col-lg-2
+
+      .sidebar-widget-tags
+        h4.sidebar-widget-title Popular tags
