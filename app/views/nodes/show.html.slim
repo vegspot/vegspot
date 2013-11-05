@@ -28,6 +28,12 @@
         = render 'comments/form' if can? :create, @comment
 
   #sidebar.col-lg-2
+    ul.list-unstyled
+      - @similar_nodes.results.each do |node|
+        li = link_to node do
+          = image_tag node.thumbnail, width: '100%', height: '70px'
+          h5= node.title
+
     .sidebar-widget-tags
       h4.sidebar-widget-title Tagged
       ul.list-unstyled

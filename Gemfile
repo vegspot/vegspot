@@ -55,6 +55,7 @@ gem 'sinatra'
 
 # Elasticsearch
 gem 'tire'
+gem 'tire-contrib'
 
 # Gems used only for assets and not required
 # in production environments by default.

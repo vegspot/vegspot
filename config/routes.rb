@@ -29,8 +29,8 @@ Vegspot::Application.routes.draw do
       get 'recent'
     end
   end
-  
-  resources :search, controller: 'search'
+
+  get 'search' => 'search#index'
 
   get '/users/auth/:service/callback' => 'services#create'
   resources :services, :only => [:index, :create, :destroy]

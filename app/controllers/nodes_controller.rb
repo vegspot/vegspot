@@ -52,9 +52,16 @@ class NodesController < ApplicationController
   # GET /nodes/1
   # GET /nodes/1.json
   def show
-    @node     = Node.find(params[:id])
-    @comment  = Comment.new
-    @comments = @node.root_comments
+    @node          = Node.find(params[:id])
+    @comment       = Comment.new
+    @comments      = @node.root_comments
+
+    node           = @node
+    @similar_nodes = Tire.search 'nodes', load: true do
+      query do
+        fuzzy_like_this node.title
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb

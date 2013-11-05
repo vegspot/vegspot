@@ -1,6 +1,7 @@
 class Node < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  require 'tire/queries/fuzzy_like_this'
 
   belongs_to :user
   belongs_to :site
