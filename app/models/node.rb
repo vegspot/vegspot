@@ -10,8 +10,9 @@ class Node < ActiveRecord::Base
   make_flaggable
 
   # callbacks
-  after_save  :set_site
-  before_save :refresh_score
+  after_save        :set_site
+  after_create      :scrap_thumbnail
+  after_create      :refresh_score
   before_validation :default_values
 
   # scopes
@@ -34,24 +35,17 @@ class Node < ActiveRecord::Base
   # Fetches shares counters using share_counts gem.
   # When everthing is done, it saves all the scores and sums them up with up votes.
   def refresh_score
-    shares = ShareCounts.selected self.url, [:facebook, :twitter]
-    self.shares_facebook = ( shares[:facebook] || self.shares_facebook )
-    self.shares_twitter  = ( shares[:twitter]  || self.shares_twitter )
+    NodesWorker.perform_async(:refresh_score, self.id)
+  end
 
-    self.score = self.shares_facebook + self.shares_twitter + self.plusminus
+  def scrap_thumbnail
+    return if self.url.nil?
+    NodesWorker.perform_async(:scrap_thumbnail, self.id)
   end
 
   # Set default values
   def default_values
     self.status ||= 'live'
-  end
-
-  def scrap_thumbnail
-    return if self.url.nil?
-
-    thumbnail = Media::ThumbnailScrapper.new.scrap(self.url)
-    self.remote_thumbnail_url = thumbnail if thumbnail
-    self.save
   end
 
   private
