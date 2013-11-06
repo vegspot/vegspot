@@ -1,0 +1,20 @@
+.media.comment
+  .pull-left
+
+    // Info about ocmment user
+    .media.user-info
+      .pull-left
+        = render 'nodes/score', node: comment.commentable
+        = image_tag avatar_url(comment.user, 35), size: '35x35'
+      .media-body
+        = link_to comment.user.user_name, comment.user
+        small.text-muted 
+          time.timeago
+            = time_ago_in_words comment.created_at
+            |  ago
+
+  // Comment body
+  .media-body.comment-body
+    = markdown comment.body
+
+.clearfix

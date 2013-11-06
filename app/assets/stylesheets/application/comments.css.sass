@@ -1,6 +1,6 @@
 // Node comments segment
 #comments
-  margin: 15px 0 0 31px
+  margin: 15px 0
 
 // New comment form widget
 #new-comment
@@ -18,14 +18,24 @@
 // Single comment
 #comments
   .comment
-    padding: 0 5px
+    padding: 0
+
+    .user-info
+      width: 202px
+      margin-right: 5px
     
     .avatar
       margin-right: 15px
 
+    .comment-body
+      padding-top: 5px
+
     // Overwrite score widget
     .widget-score
       margin-top: -9px
+
+      a
+        font-size: 0.8em
 
       .score
         font-size: 0.8em

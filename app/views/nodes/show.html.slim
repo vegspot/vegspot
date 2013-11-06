@@ -41,21 +41,9 @@
                 span.content = @node.comment_threads.length
 
         / Dislay comments list
-        #comments
+        #comments.comments-list
           - if @node.comment_threads.any?
-            - @node.root_comments.each do |comment|
-              .media.comment
-                = render 'score', node: @node
-                .media-body
-                  .media
-                    a.pull-left.avatar
-                      = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
-                    .media-body
-                      .author
-                        strong= comment.user
-                        small.text-muted.pull-right= timeago_tag comment.created_at
-                      .content
-                        = comment.body
+            = render 'nodes/comments/list', node: @node
 
             hr
 
