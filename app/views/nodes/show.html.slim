@@ -28,32 +28,4 @@
         = render 'comments/form' if can? :create, @comment
 
   #sidebar.col-lg-2
-    .sidebar-widget-similar-stories
-      h4.sidebar-widget-title Similar stories
-      ul.list-unstyled
-        - @similar_nodes.results.each do |node|
-          li = link_to node do
-            = image_tag node.thumbnail.small, size: '160x100'
-            h5= node.title
-
-    .sidebar-widget-tags
-      h4.sidebar-widget-title Tagged
-      ul.list-unstyled
-        - @node.tag_counts.each do |tag|
-          li
-            a.btn.btn-default.btn-grey href="#"
-              | ##{tag.name.downcase}
-            span.text-muted< &times; #{tag.count}
-
-      .clearfix
-      dl.dl-horizontal
-        dt posted
-        dd 
-          = time_ago_in_words @node.created_at
-          |  ago
-
-        dt viewed
-        dd 51 times
-
-        dt active
-        dd today
+    = render 'shared/sidebar/similar_stories'

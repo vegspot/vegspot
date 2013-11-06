@@ -1,0 +1,7 @@
+.sidebar-widget-similar-stories
+  h4.sidebar-widget-title Similar stories
+  ul.list-unstyled
+    - @similar_nodes.results.each do |node|
+      li = link_to node do
+        = image_tag node.thumbnail.small, size: '160x100'
+        h5= node.title
