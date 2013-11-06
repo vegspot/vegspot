@@ -2,11 +2,12 @@
   hr
     border-color: #ddd
 
-  #content
-    padding-top: 30px
-
   .list-heading
     margin-bottom: 0
+
+  &.single-node
+    .node-list-single
+      border-bottom: 3px dashed #DDD
 
 .node-list-single
   position: relative
@@ -37,9 +38,6 @@
       margin-right: 5px
       color: #999
 
-    // li.share a
-    //   display: inline
-
   li.save a, li.share a
     display: none
 
@@ -55,6 +53,32 @@
   &:hover
     li.save a, li.share a
       display: inline
+
+  // Node tags for single node view
+  .tag-list
+    span
+      margin-left: 5px
+      font-weight: 300
+      color: #ccc
+
+  // Node stats
+  .stats
+    border-top: 1px solid #ddd
+    padding-top: 10px
+    margin-top: 15px
+    margin-bottom: 0
+
+    li
+      margin-right: 10px
+
+    .title
+      color: #999
+      text-transform: uppercase
+      font-weight: 300
+      font-size: 0.8em
+      display: block
+    .content
+      font-size: 0.9em
 
 #saved-nodes-modal
   .modal-body

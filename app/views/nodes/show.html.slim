@@ -1,31 +1,66 @@
-.container.nodes-show
-  #content.col-lg-10
-    .nodes-list
-
-      / Display node info + body
-      = render 'single', node: @node, mode: 'full'
-
-      / Dislay comments list
-      #comments
-        - if @node.comment_threads.any?
-          - @node.root_comments.each do |comment|
-            .media.comment
-              = render 'score', node: @node
-              .media-body
-                .media
-                  a.pull-left.avatar
-                    = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
-                  .media-body
-                    .author
-                      strong= comment.user
-                      small.text-muted.pull-right= timeago_tag comment.created_at
-                    .content
-                      = comment.body
-
+#main.container
+  .row
+    #content.col-lg-10
+      .row
+        .col-lg-12.list-heading.normal-case
+          h1.normal-case.page-title 
+            = link_to @node.url, target: '_blank' do
+              = @node.title
+              small.icon-external-link
           hr
 
-        / Display comments form
-        = render 'comments/form' if can? :create, @comment
+      .nodes-list.single-node
+        .media.node-list-single id="node-#{@node.id}"
+          .pull-left
+            = render 'nodes/score', node: @node
 
-  #sidebar.col-lg-2
-    = render 'shared/sidebar/similar_stories'
+            = link_to @node.url, target: '_blank' do
+              = image_tag @node.thumbnail.small, size: '160x100', class: ''
+
+          .media-body
+            ul.list-inline.tag-list
+              - @node.tag_counts.each do |tag|
+                li
+                  = link_to "##{tag.name.downcase}", '#', class: 'btn btn-grey'
+                  span.count &times; #{tag.count}
+
+            ul.list-inline.stats
+              li
+                span.title Added
+                span.content
+                  = time_ago_in_words @node.created_at
+                  |  ago
+              li
+                span.title Author
+                span.content = link_to @node.user, @node.user
+              li
+                span.title Views
+                span.content 120
+              li
+                span.title Comments
+                span.content = @node.comment_threads.length
+
+        / Dislay comments list
+        #comments
+          - if @node.comment_threads.any?
+            - @node.root_comments.each do |comment|
+              .media.comment
+                = render 'score', node: @node
+                .media-body
+                  .media
+                    a.pull-left.avatar
+                      = image_tag comment.user.avatar_url, size: '40x40', class: 'img-rounded'
+                    .media-body
+                      .author
+                        strong= comment.user
+                        small.text-muted.pull-right= timeago_tag comment.created_at
+                      .content
+                        = comment.body
+
+            hr
+
+          / Display comments form
+          = render 'comments/form' if can? :create, @comment
+
+    #sidebar.col-lg-2
+      = render 'shared/sidebar/similar_stories'
