@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def index
-    @nodes = Node.search(params[:q], load: true)
+    @nodes = Node.search(params[:q])
   end
 
 end
