@@ -167,6 +167,10 @@ GEM
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
     pg (0.17.1)
+    pg_search (0.7.2)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -308,6 +312,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg
+  pg_search
   rails (= 4.0.0)
   rails-timeago (~> 2.0)
   redcarpet
