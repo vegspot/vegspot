@@ -22,7 +22,7 @@ gem 'rails-timeago', '~> 2.0'
 
 gem 'nokogiri'
 
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 3.0.0'
 
 gem 'thumbs_up'
 

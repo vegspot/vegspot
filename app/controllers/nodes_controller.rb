@@ -1,5 +1,6 @@
 class NodesController < ApplicationController
   before_action :get_recent_comments, only: [:index]
+  before_action :get_node, only: [:show, :edit, :create, :save, :share]
   before_action :get_related_nodes, only: [:show]
 
   #load_and_authorize_resource
@@ -52,16 +53,8 @@ class NodesController < ApplicationController
   # GET /nodes/1
   # GET /nodes/1.json
   def show
-    @node          = Node.find(params[:id])
     @comment       = Comment.new
     @comments      = @node.root_comments
-
-    node           = @node
-    @similar_nodes = Tire.search 'nodes', load: true do
-      query do
-        fuzzy_like_this node.title
-      end
-    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -82,7 +75,6 @@ class NodesController < ApplicationController
 
   # GET /nodes/1/edit
   def edit
-    @node = Node.find(params[:id])
   end
 
   # POST /nodes
@@ -105,8 +97,6 @@ class NodesController < ApplicationController
   # PUT /nodes/1
   # PUT /nodes/1.json
   def update
-    @node = Node.find(params[:id])
-
     respond_to do |format|
       if @node.update_attributes(node_params)
         format.html { redirect_to @node, notice: 'Node was successfully updated.' }
@@ -120,21 +110,19 @@ class NodesController < ApplicationController
 
   # DELETE /nodes/1
   # DELETE /nodes/1.json
-  def destroy
-    @node = Node.find(params[:id])
-    @node.destroy
+  # def destroy
+  #   @node = Node.find(params[:id])
+  #   @node.destroy
 
-    respond_to do |format|
-      format.html { redirect_to nodes_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to nodes_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   # POST /nodes/:id/save
   # Saves / unsave a node
   def save
-    @node = Node.find(params[:id])
-    
     # Toggle `save` flag
     if current_user.flagged?(@node)
       current_user.unflag(@node)
@@ -148,8 +136,6 @@ class NodesController < ApplicationController
   end
 
   def share
-    @node = Node.find(params[:id])
-
     respond_to do |format|
       format.js
     end
@@ -193,6 +179,11 @@ class NodesController < ApplicationController
     end
   end
 
+  # Get node
+  def get_node
+    @node = Node.find(params[:id])
+  end
+
   # Get recent comments
   def get_recent_comments
     @recent_comments = Comment.recent.limit(5)
@@ -200,6 +191,6 @@ class NodesController < ApplicationController
 
   # Get related nodes
   def get_related_nodes
-    @related_nodes = Node.popular.limit(10)
+    @related_nodes = @node.find_related_tags.limit(10)
   end
 end
