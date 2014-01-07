@@ -53,9 +53,7 @@ gem 'fastimage'
 gem 'sidekiq'
 gem 'sinatra'
 
-# Elasticsearch
-gem 'tire'
-gem 'tire-contrib'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.

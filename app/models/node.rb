@@ -1,8 +1,4 @@
 class Node < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-  require 'tire/queries/fuzzy_like_this'
-
   belongs_to :user
   belongs_to :site
 
@@ -33,15 +29,6 @@ class Node < ActiveRecord::Base
   validates :body,      length: { minimum: 10 }, allow_blank: true
   validates :tag_list,  presence: true, length: { maximum: 5 }
   validates :status,    presence: true, inclusion: { in: %w(pending live) }
-
-  # ElasticSearch mappings
-  mapping do
-    indexes :id,         index:    :not_analyzed
-    indexes :title,      analyzer: 'snowball', boost: 100
-    indexes :body,       analyzer: 'snowball'
-    indexes :created_at, type:     'date', include_in_all: false
-    indexes :tag_list,   analyzer: 'keyword'
-  end
 
   # methods
 
